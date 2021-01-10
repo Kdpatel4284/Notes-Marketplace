@@ -1,0 +1,94 @@
+/*===============================
+ email verification  page
+=================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+    background: #000;
+}
+
+.ev_white {
+
+
+    background-color: white;
+    width: 740px;
+    height: 430px;
+    border-radius: 3px;
+}
+
+.ev_white_section {
+
+
+    margin-top: 140px;
+    margin-left: 320px;
+}
+
+#logo {
+
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+#text_head {
+    margin-left: 30px;
+    margin-top: 25px;
+}
+
+#text_head h2 {
+    font-family: Open Sans, sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #6255a5;
+}
+
+#text_details {
+
+    margin-left: 30px;
+    margin-top: 25px;
+}
+
+#text_details h4 {
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+}
+
+#text_details p {
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    margin-bottom: 50px;
+}
+
+#text_btn {
+    margin-left: 30px;
+    margin-top: 25px;
+
+}
+
+#text_btn button {
+    background-color: #6255a5;
+    width: 600px;
+    height: 50px;
+    font-weight: 600;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    margin-top: 1px;
+    margin-bottom: 60px;
+
+}
+
+/*===============================
+  end of  email varification page
+================================*/
+/*===============================
+end  email page css
+=================================*/

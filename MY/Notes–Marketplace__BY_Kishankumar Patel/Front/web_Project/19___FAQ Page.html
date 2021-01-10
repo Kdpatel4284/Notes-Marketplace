@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title>FAQ Page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="css/other/search_notes.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- user profile section -->
+    <section id="">
+        <!-- header  section -->
+        <nav class="navbar ">
+            <div class="container-fluid">
+                <div class="site-nav-wrapper">
+                    <div class="navbar-header">
+                        <!-- Mobile Menu Open Button -->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+                        <!-- Logo -->
+                        <a class="navbar-brand smooth-scroll h-logo" href="#home">
+                            <img src="images/home/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <!-- Main menu -->
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <li>
+                                    <a class="btn btn-secondary dropdown-toggle smooth-scroll" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Notes Under Review</a>
+                                        <a class="dropdown-item" href="#">Published Notes</a>
+                                        <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                        <a class="dropdown-item" href="#">Rejected Notes</a>
+
+                                    </div>
+                                </li>
+                                <li><a class="smooth-scroll" href="../front/search-notes.html">Search Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/add-notes.html">Sell Your Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/buyer-request.html">Buyer Requests</a></li>
+                                <li>
+                                    <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img class="my_profile__size " src="images/User-Profile/profile.jpg" alt="author" class="img-circle"></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">My Profile</a>
+                                            <a class="dropdown-item" href="#">My Downloads</a>
+                                            <a class="dropdown-item" href="#">My Sold Notes</a>
+                                            <a class="dropdown-item" href="#">My Rejected Notes</a>
+                                            <a class="dropdown-item" href="#">Change Password</a>
+                                            <a class="dropdown-item a-logout" href="#">LOGOUT</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><button type="submit" class="btn btn-primary btn-lg btn-block  text-center navbar-btn">
+                                        Logout
+                                    </button></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div id="mobile-nav">
+                        <!-- Mobile Menu Open Button -->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li>
+                                    <a>Dashboard</a>
+                                    <i class="fa fa-chevron-down toggle-arrow" data-toggle="collapse" data-target="#collapse-dashboard1"></i>
+                                    <div class="collapse" id="collapse-dashboard1">
+                                        <ul class="header-collapse">
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Notes Under Review</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Published Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Downloaded Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Rejected Notes</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a class="smooth-scroll" href="../front/search-notes.html">Search Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/add-notes.html">Sell Your Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/buyer-request.html">Buyer Requests</a></li>
+                                <li id="header-profile">
+
+                                    <img class="my_profile__size " src="images/User-Profile/profile.jpg" class="img-circle" data-toggle="collapse" data-target="#collapse-dashboard4" style="margin-left: 15px;">
+                                    <div class="collapse" id="collapse-dashboard4">
+                                        <ul class="header-collapse">
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Profile</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Downloads</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Sold Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Rejected Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Change Password</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px" class="a-logout">LOGOUT</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block text-center">
+                                        Logout
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- end of header  section -->
+
+        <!-- 2nd user profile text   section -->
+        <div id="second_section">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-12 my_main_heading">
+
+                        <h2>
+                            <center>Frequently Asked Qustions</center>
+                        </h2>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!-- end of 2nd user profile text   section -->
+
+
+
+        <!-- Genreal qa  section -->
+        <div class="section_heading">
+            <div class="container">
+                <!--====1st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <h2>General Qustions </h2>
+                    </div>
+                </div>
+
+                <!--====1st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h4>What Is Marketpace-Notes?</h4>
+                                <button onclick="change_faq()" id="faq_expand_btn" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 1st row ====-->
+
+                <!--====2st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h5>What do the University say?</h5>
+                                <button onclick="change_faq_2()" id="faq_expand_btn_2" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample_2" aria-expanded="false" aria-controls="collapseExample_2">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample_2">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 2st row ====-->
+
+                <!--====3st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h5>Is this Legal?</h5>
+                                <button onclick="change_faq_3()" id="faq_expand_btn_3" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample_3" aria-expanded="false" aria-controls="collapseExample_3">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample_3">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 3st row ====-->
+            </div>
+        </div>
+        <!-- en geral Qa  section -->
+
+
+        <!-- uploder section -->
+        <div class="section_heading">
+            <div class="container">
+                <!--====1st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <h2>Uploaders </h2>
+                    </div>
+                </div>
+
+
+
+                <!--====4st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h5>What can't i sell?</h5>
+                                <button onclick="change_faq_4()" id="faq_expand_btn_4" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample_4" aria-expanded="false" aria-controls="collapseExample_4">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample_4">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 2st row ====-->
+
+                <!--====5st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h5>What notes can i sell?</h5>
+                                <button onclick="change_faq_5()" id="faq_expand_btn_5" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample_5" aria-expanded="false" aria-controls="collapseExample_5">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample_5">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 3st row ====-->
+            </div>
+        </div>
+        <!-- en geral Qa  section -->
+
+
+
+        <!-- Downloader section -->
+        <div class="section_heading">
+            <div class="container">
+                <!--====1st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <h2>Downloaders </h2>
+                    </div>
+                </div>
+
+
+
+                <!--====4st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h5>How do i buy notes?</h5>
+                                <button onclick="change_faq_6()" id="faq_expand_btn_6" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample_6" aria-expanded="false" aria-controls="collapseExample_6">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample_6">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 2st row ====-->
+
+                <!--====5st row ====-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="my_box_faq">
+
+                            <div class="faq_plush">
+
+                                <h5>Can i edit notes i purchased?</h5>
+                                <button onclick="change_faq_7()" id="faq_expand_btn_7" class="btn btn-primary faq_expand_btn_class" type="button" data-toggle="collapse" data-target="#collapseExample_7" aria-expanded="false" aria-controls="collapseExample_7">+</button>
+                            </div>
+                            <div class="collapse" id="collapseExample_7">
+                                <div class="card card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--==== end 3st row ====-->
+            </div>
+        </div>
+        <!-- en geral Qa  section -->
+    </section>
+
+    <!-- footer  section -->
+    <div id="section_footer">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <p> Copyright &copy; TatvaSoft All rights reserved.</p>
+                </div>
+
+                <div class="col-sm-8">
+
+                    <p id="footer_icon">
+                        <!-- Add icon library -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                        <!-- Add font awesome icons -->
+                        <a href="#" class="fa fa-facebook"></a>
+
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-linkedin"></a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of footer-->
+    <!--  End of user section -->
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

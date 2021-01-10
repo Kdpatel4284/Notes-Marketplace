@@ -1,0 +1,417 @@
+/*  =====================
+Kishan Patel From GNU
+=====================
+
+/*=========================
+    Html and Body
+===========================*/
+html,
+body {
+
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    height: auto;
+    padding: 0;
+    position: relative;
+    min-height: 100%
+}
+
+/*=========================
+    home page Page Css is here
+===========================*/
+
+.site-header {
+    padding: 18px 0;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+}
+
+.sticky-header .site-header {
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .11);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .11);
+    transition: all .3s;
+    -o-transition: all .3s;
+    -ms-transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    padding: 5px 0;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .11);
+    background: black;
+    -webkit-text-decoration-color: black;
+    text-decoration-color: black;
+}
+
+.site-header .header-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 40px;
+    transition: .3s;
+    -o-transition: .3s;
+    -ms-transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+}
+
+.site-header .header-wrapper .logo-wrapper a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 50px;
+}
+
+.site-header .header-wrapper .logo-wrapper {
+    position: relative;
+    z-index: 9;
+}
+
+.site-header .header-wrapper .navigation-wrapper .main-nav .menu-navigation {
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    list-style: none;
+}
+
+.site-header .header-wrapper .navigation-wrapper .main-nav .menu-navigation > li {
+    margin: 0 20px;
+}
+
+.site-header .header-wrapper .navigation-wrapper .main-nav .menu-navigation > li a {
+    font-size: 20px;
+    display: inline-block;
+    line-height: 1.25;
+    font-weight: 400;
+    color: #fff;
+    ;
+    text-shadow: 0 0 7px rgba(0, 0, 0, .6);
+    -webkit-text-decoration: none;
+    text-decoration: none;
+}
+
+section {
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+#bgimg_first_section {
+    width: auto;
+    height: auto;
+    margin-top: -110px;
+}
+
+.first-section h2 {
+    color: #fff;
+}
+
+#text_first_section {
+
+    position: absolute;
+    margin-top: -550px;
+    margin-left: 8px;
+}
+
+#text_first_section h2 {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 54px;
+    color: #fff;
+}
+
+#mylogo {
+    margin-left: 160px;
+}
+
+#text_first_section p {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #fff;
+}
+
+#text_first_section button {
+
+    background-color: transparent;
+    width: 172px;
+    height: 40px;
+    border-radius: 3px;
+    -webkit-text-decoration-color: #fff;
+    color: #fff;
+    font-weight: 600;
+    font font-size: 18px;
+    border-color: white;
+    margin-top: 10px;
+    text-transform: uppercase;
+    outline-color: #fff;
+
+}
+
+
+#login-btn {
+
+    color: #6255a5;
+    background-color: #fff;
+    width: 89px;
+    height: 35px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Open Sans, sans-serif;
+
+
+}
+
+.first_section {
+
+    position: absolute;
+    margin-top: 300px;
+
+
+}
+
+.first_section h3 {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: #6255a5
+}
+
+.first_section p {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+
+}
+
+#section_two {
+
+
+    margin-top: 10px;
+    padding: 60px;
+}
+
+#section_two h3 {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: #6255a5
+}
+
+#section_two h4 {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #6255a5
+}
+
+#section_two p {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+
+}
+
+#section_two_img_margin {
+
+    position: absolute;
+    margin-left: 180px;
+    margin-top: 100px;
+}
+
+#section_two_img_margin img {
+
+
+    margin-left: 100px;
+    margin-bottom: 30px;
+}
+
+#section_two_img_margin button {
+
+    color: #fff;
+    background-color: #6255a5;
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Open Sans, sans-serif;
+    margin-left: 15px;
+}
+
+/* right side MARGIN OF section two */
+#section_two_img_margin_right {
+
+    margin-left: 10px;
+    margin-top: 75px;
+}
+
+#section_two_img_margin_right img {
+
+    margin-bottom: -11px;
+}
+
+#section_two_img_margin_right button {
+
+    color: #fff;
+    background-color: #6255a5;
+    width: 110px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Open Sans, sans-serif;
+    margin-left: 15px;
+}
+
+#section_three {
+
+    margin-top: 10px;
+    padding: 60px;
+
+}
+
+#section_three center h3 {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: #6255a5;
+    margin-bottom: 40px;
+}
+
+#section_three h4 {
+
+    font-family: Open Sans, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #6255a5
+}
+
+.section_three_bg {
+
+
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 30px 0px;
+    -webkit-box-shadow: 0px 0px 30px 0px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.footer_my {
+
+    position: absolute;
+    margin-left: 1050px;
+
+}
+
+.my_profile__size {
+    margin-top: 7px;
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+}
+
+.my_profile_text {
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+
+.section_three_bg p,
+h4 {
+
+    margin-left: 20px;
+}
+
+/* ============================== 
+ end of home page css
+===========================*/
+
+
+/*=====================footer css===============*/
+#section_footer {
+
+    margin-top: 20px;
+    margin-bottom: 30PX;
+}
+
+#footer_icon {
+
+    margin-left: 600px;
+}
+
+#footer_icon a {
+
+    height: 36px;
+    width: 36px;
+}
+
+.fa {
+    padding: 12px;
+    text-align: center;
+    margin: 5px2 2px;
+    font-size: 70px;
+    width: 50px;
+    border-radius: 20px;
+}
+
+.fa-facebook {
+    background: #6255a5;
+    color: white;
+}
+
+.fa-twitter {
+    background: #6255a5;
+    color: white;
+}
+
+.fa-linkedin {
+    background: #6255a5;
+    color: white;
+}
+
+/*=====================end footer css===============*/
+
+/* end of responsive css */
+/*  By Kishankumar Patel From GNU  */

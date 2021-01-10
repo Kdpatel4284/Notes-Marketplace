@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title>Downloaded Notes </title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="css/other/Dashboard%20.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- header  section -->
+    <nav class="navbar ">
+        <div class="container-fluid">
+            <div class="site-nav-wrapper">
+                <div class="navbar-header">
+                    <!-- Mobile Menu Open Button -->
+                    <span id="mobile-nav-open-btn">&#9776;</span>
+                    <!-- Logo -->
+                    <a class="navbar-brand smooth-scroll h-logo" href="#home">
+                        <img src="images/home/logo.png" alt="logo">
+                    </a>
+                </div>
+                <!-- Main menu -->
+                <div class="container">
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav pull-right">
+                            <li>
+                                <a class="btn btn-secondary dropdown-toggle smooth-scroll" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Notes Under Review</a>
+                                    <a class="dropdown-item" href="#">Published Notes</a>
+                                    <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                    <a class="dropdown-item" href="#">Rejected Notes</a>
+
+                                </div>
+                            </li>
+                            <li><a class="smooth-scroll" href="../front/search-notes.html">Notes</a></li>
+                            <li><a class="smooth-scroll" href="../front/add-notes.html">Members</a></li>
+                            <li><a class="smooth-scroll" href="../front/buyer-request.html">Reports</a></li>
+                            <li><a class="smooth-scroll" href="../front/buyer-request.html">Settings</a></li>
+                            <li>
+                                <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img class="my_profile__size " src="images/User-Profile/profile.jpg" alt="author" class="img-circle"></a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">My Profile</a>
+                                        <a class="dropdown-item" href="#">My Downloads</a>
+                                        <a class="dropdown-item" href="#">My Sold Notes</a>
+                                        <a class="dropdown-item" href="#">My Rejected Notes</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <a class="dropdown-item a-logout" href="#">LOGOUT</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><button type="submit" class="btn btn-primary btn-lg btn-block  text-center navbar-btn">
+                                    Logout
+                                </button></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-nav">
+                    <!-- Mobile Menu Open Button -->
+                    <span id="mobile-nav-close-btn">&times;</span>
+                    <div id="mobile-nav-content">
+                        <ul class="nav">
+                            <li>
+                                <a>Dashboard</a>
+                                <i class="fa fa-chevron-down toggle-arrow" data-toggle="collapse" data-target="#collapse-dashboard1"></i>
+                                <div class="collapse" id="collapse-dashboard1">
+                                    <ul class="header-collapse">
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Notes Under Review</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Published Notes</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Downloaded Notes</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Rejected Notes</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a class="smooth-scroll" href="../front/search-notes.html">Notes</a></li>
+                            <li><a class="smooth-scroll" href="../front/add-notes.html">Members</a></li>
+                            <li><a class="smooth-scroll" href="../front/buyer-request.html">Reports</a></li>
+                            <li><a class="smooth-scroll" href="../front/buyer-request.html">Settings</a></li>
+                            <li id="header-profile">
+
+                                <img class="my_profile__size " src="images/User-Profile/profile.jpg" class="img-circle" data-toggle="collapse" data-target="#collapse-dashboard4" style="margin-left: 15px;">
+                                <div class="collapse" id="collapse-dashboard4">
+                                    <ul class="header-collapse">
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Profile</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Downloads</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Sold Notes</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Rejected Notes</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Change Password</a></li>
+                                        <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px" class="a-logout">LOGOUT</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block text-center">
+                                    Logout
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <hr style="height:1px; border-width:2px;color:gray;">
+    <!-- end of header  section -->
+
+
+    <!--===========  Dashboard part ===================--->
+    <section id="dash">
+
+        <!-- container -->
+        <div class="container">
+            <!-- title and  button row -->
+            <div class="row" id="row_1">
+
+                <div class="col-sm-12">
+                    <div class="deash_title_btn">
+                        <h2> Downloaded Notes</h2>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- end of row -->
+
+            <!-- my custom box row -->
+
+            <div class="name_dropdown">
+                <p>Note</p>
+                <p>Seller</p>
+                <p>Buyer</p>
+            </div>
+            <!--======================table with search btn==========================-->
+            <!-- table title row -->
+            <div class="row">
+                <!-- column 01-->
+                <div class="col-sm-12">
+
+                    <div class="deash_title_btn_table">
+                        <div class="name_dropdown">
+
+                            <div class="drop_secton">
+
+                                <div class="btn_border_dn1">
+                                    <select class="mdb-select md-form" searchable="Search here..">
+                                        <option value="" disabled selected>Select note</option>
+                                        <option value="1">USA</option>
+                                        <option value="2">Germany</option>
+                                        <option value="3">France</option>
+                                        <option value="3">Poland</option>
+                                        <option value="3">Japan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="drop_secton">
+                                <div class="btn_border_dn">
+                                    <select class="mdb-select md-form" searchable="Search here..">
+                                        <option value="" disabled selected>Select seller</option>
+                                        <option value="1">USA</option>
+                                        <option value="2">Germany</option>
+                                        <option value="3">France</option>
+                                        <option value="3">Poland</option>
+                                        <option value="3">Japan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="drop_secton">
+                                <div class="btn_border_dn">
+                                    <select class="mdb-select md-form" searchable="Search here..">
+                                        <option value="" disabled selected>Rahul Shah</option>
+                                        <option value="1">USA</option>
+                                        <option value="2">Germany</option>
+                                        <option value="3">France</option>
+                                        <option value="3">Poland</option>
+                                        <option value="3">Japan</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Search form -->
+                        <div id="search_btn_drop_aglin">
+                            <div id="serach_btn">
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button id="add_note_btn_search">SEARCH</button>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end of column 01-->
+            </div>
+            <!-- end of row -->
+
+            <br>
+            <!-- Table 01 row -->
+            <div class="row">
+                <!-- column 01-->
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">SR NO.</th>
+                                    <th scope="col"> NOTE TITLE</th>
+                                    <th scope="col">CATEGORY</th>
+                                    <th scope="col">BUYER</th>
+                                    <th></th>
+                                    <th scope="col">SELLER</th>
+                                    <th></th>
+                                    <th scope="col">SELL TYPE</th>
+                                    <th scope="col">PRICE</th>
+                                    <th scope="col">DOWNLOADED DATE/TIME</th>
+                                    <th scope="col">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td scope="row">1</td>
+                                    <td>Software Engineer</td>
+                                    <td>IT</td>
+                                    <td>Rahul Shah</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Khyati Patel</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Paid</td>
+                                    <td>$145</td>
+                                    <td>25-11-2020, 11:08 </td>
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="images/dashboard/more.png">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Download Notes</a><br>
+                                                <a class="dropdown-item" href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">View More Details</a>
+                                                <a class="dropdown-item" href="#">Unpublish</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+
+
+                                    <td scope="row">1</td>
+                                    <td>Software Engineer</td>
+                                    <td>IT</td>
+                                    <td>Rahul Shah</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Khyati Patel</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Paid</td>
+                                    <td>$145</td>
+                                    <td>25-11-2020, 11:08 </td>
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="images/dashboard/more.png">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Download Notes</a><br>
+                                                <a class="dropdown-item" href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">View More Details</a>
+                                                <a class="dropdown-item" href="#">Unpublish</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td scope="row">1</td>
+                                    <td>Software Engineer</td>
+                                    <td>IT</td>
+                                    <td>Rahul Shah</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Khyati Patel</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Paid</td>
+                                    <td>$145</td>
+                                    <td>25-11-2020, 11:08 </td>
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="images/dashboard/more.png">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Download Notes</a><br>
+                                                <a class="dropdown-item" href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">View More Details</a>
+                                                <a class="dropdown-item" href="#">Unpublish</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td scope="row">1</td>
+                                    <td>Software Engineer</td>
+                                    <td>IT</td>
+                                    <td>Rahul Shah</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Khyati Patel</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Paid</td>
+                                    <td>$145</td>
+                                    <td>25-11-2020, 11:08 </td>
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="images/dashboard/more.png">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Download Notes</a><br>
+                                                <a class="dropdown-item" href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">View More Details</a>
+                                                <a class="dropdown-item" href="#">Unpublish</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td scope="row">1</td>
+                                    <td>Software Engineer</td>
+                                    <td>IT</td>
+                                    <td>Rahul Shah</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Khyati Patel</td>
+                                    <td>
+                                        <img class="my_img_nur" src="images/dashboard/eye.png">
+                                    </td>
+                                    <td>Paid</td>
+                                    <td>$145</td>
+                                    <td>25-11-2020, 11:08 </td>
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="images/dashboard/more.png">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Download Notes</a><br>
+                                                <a class="dropdown-item" href="#" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">View More Details</a>
+                                                <a class="dropdown-item" href="#">Unpublish</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end of column 01-->
+            </div>
+            <!-- end of row -->
+
+            <!-- row -->
+            <div class="row">
+                <!-- column 01-->
+                <div class="col-sm-12">
+
+                    <center>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </center>
+
+                </div>
+                <!-- end of column 01-->
+            </div>
+            <!-- end of row <-->
+            <!--======================table with search btn + paging==========================-->
+        </div>
+        <!--  end of container -->
+    </section>
+
+    <!--===========End Dasboard part===================--->
+
+    <!-- footer  section -->
+    <div id="section_footer">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" id="footer_admin">
+                    <p>Version : 1.1.24</p>
+                    <p> Copyright &copy; TatvaSoft All rights reserved.</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- end of footer-->
+    <!--  End of user section -->
+
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>
