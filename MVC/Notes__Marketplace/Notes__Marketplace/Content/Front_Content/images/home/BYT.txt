@@ -1,0 +1,29 @@
+
+step 1: 
+Run project from android studio.
+
+step 2:
+After successful build the gradle of android project than our application now run in android device.
+
+step 3:
+At first time application ask for log-in.If user already register before then it will directly login into application otherwise he/she need to register and than do login.
+
+step 4:
+After login home page will come,on that page user can see three different options "Home","Search","Account".
+
+step 4:
+Home page contain some famous hotels and other details.
+Search page contains all cities of Gujarat state and from that page user can search city and the next page display all hotels of that city.
+Account page contains all details about user like booking details,user name,registered mobile number,booking status,reference id for booking table,transaction id.
+
+step 5:
+After selecting city user will get list of hotels.From that user will select any one hotel and after that it will redirect to hotel details page.This page contains all detials about hotel.
+
+step 6:
+After clicking on next button user will redirect to graphical view of hotel's table arrangement.
+
+step 7:
+after that page user will reach on actual booking table page.On that page user will book table for that day only by selecting table no,time and then system will check if table is available than it will be redirect to payment section otherwise it will show message like table is not available.
+
+step 8:
+After reaching on payment page it will asking by which UPI payment app user wants to pay.After payment all details shown in user's account page and as soon as manage confirm booking it will show booking "Status: Success" otherwise it will show error or waiting/fails.
