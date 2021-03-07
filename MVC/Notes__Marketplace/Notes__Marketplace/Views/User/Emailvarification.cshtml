@@ -1,0 +1,114 @@
+﻿
+@{
+    Layout = null;
+}
+@model Notes__Marketplace.Models.EmailVerificationModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title>Email verification Page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS  css/bootstrap/bootstrap.min.css-->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/bootstrap/bootstrap.min.css">
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/email_verification.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/responsive.css">
+
+</head>
+
+<body>
+
+    <!--  section-01 -->
+    <section id="ev_page_bg">
+
+        <div class="ev_white_section">
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="ev_white">
+
+
+                            <div class="container">
+
+                                <!-- 1st row-->
+                                <div class="row" id="logo">
+                                    <div class="col-sm-12">
+                                        <img src="~/Content/Front_Content/images/home/logo.png" alt="logo">
+
+                                    </div>
+                                </div>
+
+                                <!-- 2st row-->
+                                <div class="row" id="text_head">
+                                    <div class="col-sm-12">
+                                        <h2> Email Verification</h2>
+
+                                    </div>
+                                </div>
+
+                                <!-- 3st row-->
+                                <div class="row" id="text_details">
+                                    <div class="col-sm-12">
+                                        <h4>Dear,@ViewBag.viewfname @ViewBag.viewlname</h4>
+                                        <p>Thanks for Signing up!<br>Simply click below for email verification.</p>
+
+                                    </div>
+                                </div>
+
+                                <!-- 4st row-->
+                               
+
+                                <div class="row" id="text_btn">
+                                    <div class="col-sm-12">
+                                        @using (Html.BeginForm())
+                                        {
+                                            <input name="ID" type="hidden" value="@ViewBag.Id" />
+                                            <input name="EmailID" type="hidden" value="@ViewBag.email" />
+                                            <input name="FirstName" type="hidden" value="@ViewBag.fname" />
+                                            <input name="LastName" type="hidden" value="@ViewBag.lname" />
+
+                                            <input type="submit" value="@ViewBag.btntext" class="btn btn-lg btn-primary" />
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--  End of section 01 -->
+    <!--======================================================-->
+    <!-- JQuery -->
+    <script src="~/Content/Front_Content/js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Content/Front_Content/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Content/Front_Content/js/script.js"></script>
+    <!--======================================================-->
+</body>
+
+</html>
