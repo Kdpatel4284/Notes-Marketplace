@@ -1,0 +1,9 @@
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\bin\Debug\netstandard2.0\Note_Marketplace.Db.deps.json
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\bin\Debug\netstandard2.0\Note_Marketplace.Db.dll
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\bin\Debug\netstandard2.0\Note_Marketplace.Db.pdb
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\obj\Debug\netstandard2.0\Note_Marketplace.Db.csprojAssemblyReference.cache
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\obj\Debug\netstandard2.0\Note_Marketplace.Db.AssemblyInfoInputs.cache
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\obj\Debug\netstandard2.0\Note_Marketplace.Db.AssemblyInfo.cs
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\obj\Debug\netstandard2.0\Note_Marketplace.Db.csproj.CoreCompileInputs.cache
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\obj\Debug\netstandard2.0\Note_Marketplace.Db.dll
+D:\ASP net MVC5__Projects\Notes__Marketplace\Note_Marketplace.Db\obj\Debug\netstandard2.0\Note_Marketplace.Db.pdb

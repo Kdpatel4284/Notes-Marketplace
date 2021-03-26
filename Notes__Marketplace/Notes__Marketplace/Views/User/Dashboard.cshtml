@@ -1,0 +1,384 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title> Sell Your Notes</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Dashboard.css">
+
+
+}
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@{
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+ }
+
+
+<script type="text/javascript">
+
+
+   
+
+</script>
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<!--===========  Dashboard part ===================--->
+
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+        <div class="row" id="row_1">
+
+            <div class="col-sm-12">
+                <div class="deash_title_btn">
+                    <h2> Dashboard</h2>
+
+                    @using (Html.BeginForm("AddNotes", "User", FormMethod.Get))
+                    {
+                        <button id="add_note_btn">ADD NOTE</button>
+                    }
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of row -->
+        <!-- my custom box row -->
+
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-6">
+                <div class="box_align">
+                    <div class="my_custom_box">
+                        <img src="~/Content/Front_Content/images/dashboard/salary.png">
+                        <h4> My Earning</h4>
+                    </div>
+                    <div class="my_custom_box_2">
+
+                        <div class="text_center">
+                            <h3>100</h3>
+                            <p>Number of Notes Sold</p>
+
+                        </div>
+
+                        <div class="text_center">
+                            <h3>$10,00,000</h3>
+                            <p>Money Earned</p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end of column 01-->
+            <!-- column 02-->
+            <div class="col-sm-6">
+
+                <div class="box_align">
+                    <div class="my_custom_box">
+
+                        <h3> 38</h3>
+                        <p>My Dowmnload</p>
+
+                    </div>
+                    <div class="my_custom_box">
+
+                        <h3>12</h3>
+                        <p>My Rejected<br>Notes</p>
+                    </div>
+                    <div class="my_custom_box">
+
+                        <h3>102</h3>
+                        <p>Buyer Requested</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end of column 02-->
+        </div>
+        <!-- end of row -->
+        <br><br>
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <h2> In Progress Notes</h2>
+                    <!-- Search form for IPNotes -->
+                    <div>
+                        @using (Html.BeginForm("Dashboard", "User", FormMethod.Get))
+                        {
+                            <input name="IPNotes" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" id="add_note_btn_search">SEARCH</button>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ADDED DATE</th>
+                                <th scope="col">TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">ACTIONS</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in Model)
+                            {
+
+
+                                //ViewBag.CategoryList
+
+                                <tr>
+                                    <td scope="row">@X.CreatedDate</td>
+                                    <td>@X.Title</td>
+                                    @foreach (var C in ViewBag.CategoryList)
+                                    {
+                                        if (X.Category == C.ID)
+                                        {
+                                            <td>@C.Name</td>
+                                            break;
+                                        }
+
+
+                                    }
+
+
+
+                                    @foreach (var Y in ViewBag.RefDataList)
+                                    {
+                                        if (X.Status == Y.ID)
+                                        {
+
+                                            <td>@Y.Value</td>
+                                            break;
+
+                                        }
+                                    }
+
+
+
+                                    @if (X.Status == 3)
+                                    {
+
+                                        <td class="icon_align">
+
+                                            <button style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Front_Content/images/dashboard/pencil%20(1).png">
+                                            </button>
+
+
+                                            <a href="@Url.Action("DeleteNotesFromDashDelete", "User", new { id = X.ID },null)" style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Front_Content/images/dashboard/delete%20(1).png">
+                                            </a>
+
+                                        </td>
+                                        <td></td>
+                                    }
+                                            else
+                                            {
+                                        @*@Html.ActionLink(@X.Title, "NoteDetails", "User", new { id = X.ID }, null)*@
+                                        <td class="icon_align">
+
+                                            <a href="@Url.Action("NoteDetails", "User", new { id = X.ID }, null)" style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Front_Content/images/dashboard/eye.png">
+                                            </a>
+
+                                        </td>
+                                        <td></td>
+
+                                    }
+                                </tr>
+
+
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <center> <h4 style="color:green;">@ViewBag.mymsg</h4></center>
+        <div class="row">
+
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>
+
+                    <center>@Html.PagedListPager(Model, page => Url.Action("Dashboard", "User", new { page, IPNotes = Request.QueryString["IPNotes"] }))</center>
+
+                </center>
+
+            </div>
+            <!-- end of column 01-->
+           
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+
+        <br>
+
+
+        <!--====================== publish table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <h2>Published Notes</h2>
+                    <!-- Search form -->
+                    <div>
+                        @using (Html.BeginForm("Dashboard", "User", FormMethod.Get))
+                        {
+                            <input name="PublishNotes" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" id="add_note_btn_search">SEARCH</button>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ADDED DATE</th>
+                                <th scope="col">TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">SELL TYPE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var X in ModelPublish)
+                            {
+
+                                <tr>
+                                    <td scope="row">@X.CreatedDate</td>
+                                    <td>@X.Title</td>
+
+                                    @foreach (var C in ViewBag.CategoryList)
+                                    {
+                                        if (X.Category == C.ID)
+                                        {
+                                            <td>@C.Name</td>
+                                            break;
+                                        }
+
+
+                                    }
+
+
+                                    @if (X.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+
+                                    <td>$@X.SellingPrice</td>
+
+
+                                    <td class="icon_align">
+                                        <a href="@Url.Action("NoteDetails", "User", new { id = X.ID }, null)" style="background-color:transparent; border:none;">
+                                            <img src="~/Content/Front_Content/images/dashboard/eye.png">
+                                        </a>
+                                    </td>
+                                </tr>
+
+
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>
+
+                     @Html.PagedListPager(ModelPublish, page2 => Url.Action("Dashboard", "User", new { page2, PublishNotes = Request.QueryString["PublishNotes"] }))
+                </center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+</section>
+
+
+<!--===========End Dasboard part===================--->

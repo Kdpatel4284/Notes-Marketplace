@@ -1,0 +1,303 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>Notes Details</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Userprofile_style.css">
+
+}
+
+
+@section javascript{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet">
+  
+    <script type="text/javascript">
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+
+        
+            //button Enable
+
+
+
+            //hide upload img code
+        function getname() {
+
+             if ($("#input_Preview").val() != "") {
+
+                $("#Preview").hide();
+            }
+
+        }
+
+
+
+    
+
+    </script>
+
+
+
+}
+
+
+@model Notes__Marketplace.Models.UserProfileModel
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+
+<!-- 2nd user profile text Section -->
+<div id="second_section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12 my_main_heading">
+
+                <h2>
+                    <center>User Profile</center>
+                </h2>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- end of 2nd user profile text section -->
+<center><p style="color:green; font-size:18px;"> @ViewBag.msg</p></center>
+<!-- user profile form-->
+@using (Html.BeginForm("MyProfile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+
+    <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Basic Profile Details </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <!--== 1st col==-->
+                <div class="col-sm-6">
+
+                    <!-- first name FromDB-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">First Name *</label>
+                        <input type="text" value="@ViewBag.FName" class="form-control" disabled>
+                    </div>
+
+
+                    <!-- email From DB-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Email *</label>
+                        <input type="email"  value="@ViewBag.UserEmail"  class="form-control"  disabled>
+                    </div>
+
+                    <!-- gender name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Gender</label>
+                        @*<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">*@
+                        @Html.DropDownList("Gender", new SelectList(ViewBag.genderlist, "GenderID", "Gender1"), new { @class = "form-control" })
+                    </div>
+
+                    <!-- Profile upload name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Profile picture</label>
+                        <input type="file" name="ProfilePicture" class="form-control" id="input_Preview" onchange="getname();"></input>
+                        <img src="~/Content/Front_Content/images/User-Profile/upload.png" id="Preview" style=" position: absolute; margin-top: -32px; margin-left: 281px; height: 30px;">
+                        @*<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <img src="~/Content/Front_Content/images/User-Profile/upload.png" class="upload_logo">*@
+                    </div>
+
+                </div>
+
+                <!--========= right side ===========-->
+                <!--== 2nd col==-->
+                <div class="col-sm-6">
+
+                    <!-- last name From DB-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Last Name *</label>
+                        <input type="text" value="@ViewBag.LName" class="form-control" disabled>
+                    </div>
+
+                    <!-- dob name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Date Of Birth</label>
+                        <input name="DOB" type="date" id="datepicker" class="form-control" />
+                    </div>
+
+                    <!--Row -->
+                    <row>
+                        <div class="col-sm-2">
+                            <label for="exampleFormControlInput1" class="my_lable">Code</label>
+                            @Html.DropDownList("PhonenumberCountryCode", new SelectList(ViewBag.Codelist, "Code1","Code1"), new { @class = "form-control" })
+                             <p class="text-danger">@Html.ValidationMessage("PhonenumberCountryCode")</p>
+                        </div>
+
+                        <div class="col-sm-10">
+                            <!-- phone name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Phone Number</label>
+                                <input  name="Phonenumber" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your phone number">
+                                <p class="text-danger">@Html.ValidationMessage("Phonenumber")</p>
+                            </div>
+                        </div>
+
+
+                    </row>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of basic profile detail section -->
+    <!--==================================================================--->
+    <!-- address profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Address Details </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_addform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <!-- address name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Address Line 1 *</label>
+                        <input type="text" name="AddressLine1"  class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                        <p class="text-danger">@Html.ValidationMessage("AddressLine1")</p>
+                    </div>
+
+
+                    <!-- city-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">City *</label>
+                        <input type="text" name="City"  class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                        <p class="text-danger">@Html.ValidationMessage("City")</p>
+                    </div>
+
+                    <!-- zipcode-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">ZipCode *</label>
+                        <input type="text" name="ZipCode" class="form-control" id="exampleFormControlInput1" placeholder="Enter your zip">
+                        <p class="text-danger">@Html.ValidationMessage("ZipCode")</p>
+                    </div>
+
+
+
+                </div>
+                <!--========= right side ===========-->
+                <div class="col-sm-6">
+
+                    <!-- address-2-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Address Line 2 *</label>
+                        <input type="text" name="AddressLine2" class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                        <p class="text-danger">@Html.ValidationMessage("AddressLine2")</p>
+                    </div>
+
+
+                    <!-- State-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">State *</label>
+                        <input type="text" name="State" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                        <p class="text-danger">@Html.ValidationMessage("State")</p>
+                    </div>
+
+                    <!-- Country List-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Country *</label>
+                        @Html.DropDownList("Country", new SelectList(ViewBag.countrieslist,"Name","Name"), new { @class = "form-control" })
+                        @*<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your country">*@
+                    <p class="text-danger">@Html.ValidationMessage("Country")</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of address detail section -->
+    <!--==================================================================--->
+    <!-- clg detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>University and College Information </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_clgform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <!-- university name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">University</label>
+                        <input type="text" name="University"  class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                    </div>
+
+                </div>
+                <!--========= right side ===========-->
+                <div class="col-sm-6">
+                    <!-- CollegeName-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">College</label>
+                        <input type="text" name="College" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--Submit button is here-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="my_button_submit">SUBMIT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end of address detail section -->
+}
+<!-- end of  user profile form-->

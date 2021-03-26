@@ -1,0 +1,255 @@
+﻿@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>HomePage</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/homepage_style.css">
+
+}
+
+
+<section id="home-page">
+    <!-- Header -->
+    
+    <!-- Header Ends -->
+    <div class="overlay-full-image">
+        <img src="~/Content/Front_Content/images/home/banner-with-overlay.jpg">
+        <div class="content-box-lg">
+            <div class="container home-profile">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 text-left ">
+                        <div id="tech-statement">
+                            <h1 class="white-h">Download Free/Paid Notes or Sale your Book</h1>
+                            <p class="white-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit quam voluptatibus velit eligendi.</p>
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block text-uppercase text-center profile-btn">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-01">
+        <div class="content-box-lg">
+            <div class="container">
+                <div class="row">
+                    <!-- About Left Side -->
+                    <div class="col-md-6 col-sm-6 col-xs-12 ">
+                        <div id="about-left">
+                            <div class="horizontal-heading">
+                                <h1 class="heading">About<br> NotesMarketPlace</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Right Side -->
+                    <div class="col-md-6 col-sm-6 col-xs-12 ">
+                        <div id="about-right">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur eum, asperiores provident repellendus facere cumque amet nisi deserunt, distinctio odit iure earum beatae?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis atque quasi ipsum odit qui vel quidem ut tempore. doloribus, pariatur aliquam nemo, sint modi quam eum cum unde adipisci perferendis.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="about-02">
+        <div class="content-box-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <h1 class="heading">How it Works</h1>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 j-center home-icon">
+                                <div class="about-2-home-icon">
+                                    <img class="img-responsive img-download " src="~/Content/Front_Content/images/home/download.png">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 j-center">
+                                <div class="text-center about-2-home-text">
+                                    <h2 class="heading">Download Free/Paid Notes</h2>
+                                    <p>Get Material for your<br>Cource etc.</p>
+                                    <!--Download Button Redirect to SearchPage -->
+                                        @using (Html.BeginForm("SearchNotes", "User", FormMethod.Get))
+                                        {
+                                            <button type="submit" style="background-color:#6255a5; width:150px; border-radius:3px; color:white; height:40px; font-size:18px; ">
+                                                Download
+                                            </button>
+                                        }
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 text-center">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 j-center home-icon">
+                                <div class="about-2-home-icon">
+                                    <img class="img-responsive img-seller " src="~/Content/Front_Content/images/home/seller.png">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 j-center">
+                                <div class="text-center about-2-home-text">
+                                    <h2 class="heading">Seller</h2>
+                                    <p>Upload and Download Cource<br>and Materials etc.</p>
+                                    <!--Download Button Redirect to Dashboard -->
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+
+                                        using (Html.BeginForm("Dashboard", "User", FormMethod.Get))
+                                        {
+
+
+                                            <button type="submit"  style="background-color:#6255a5; width:150px; border-radius:3px; color:white; height:40px; font-size:18px;">
+                                                Seller
+                                            </button>
+                                        }
+
+                                    }
+                                    else
+                                    {
+
+                                        using (Html.BeginForm("Login", "User", FormMethod.Get))
+                                        {
+
+
+                                            <button type="submit"  style="background-color:#6255a5; width:150px; border-radius:3px; color:white; height:40px; font-size:18px;">
+                                                Seller
+                                            </button>
+                                        }
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="about-03">
+        <div class="content-box-md">
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                        <h1 class="heading">What our Customers are Saying</h1>
+                    </div>
+                    <div class="row">
+                        <!-- Customer 01 -->
+                        <div class="col-md-6 col-sm-6 col-xs-12 customer">
+                            <div class="about-customer">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                        <img src="~/Content/Front_Content/images/home/customer-1.png" alt="customer 01" class="img-responsive img-circle img-customer">
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        <h2 class="heading">Walter Meller</h2>
+                                        <p>Founder &amp; CEO, Matrix Group</p>
+                                    </div>
+                                </div>
+                                <p>&quot; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rerum officia magnam, placeat delectus nam laborum aut ullam expedita aspernatur ex sit eaque saepe iusto dignissimos dolorem obcaecati, veritatis. Expedita.laborum aut ullam expedita aspernatur. &quot; </p>
+                            </div>
+
+                        </div>
+                        <!-- Customer 02 -->
+                        <div class="col-md-6 col-sm-6 col-xs-12 customer">
+                            <div class="about-customer">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                        <img src="~/Content/Front_Content/images/home/customer-2.png" alt="customer 02" class="img-responsive img-circle img-customer">
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        <h2 class="heading">Jonnie Riley</h2>
+                                        <p>Employee, Curious Snakcs</p>
+                                    </div>
+                                </div>
+                                <p>&quot; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rerum officia magnam, placeat delectus nam laborum aut ullam expedita aspernatur ex sit eaque saepe iusto dignissimos dolorem obcaecati, veritatis. Expedita.laborum aut ullam expedita aspernatur. &quot; </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Customer 03 -->
+                        <div class="col-md-6 col-sm-6 col-xs-12 customer">
+                            <div class="about-customer">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                        <img src="~/Content/Front_Content/images/home/customer-3.png" alt="customer 03" class="img-responsive img-circle img-customer">
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        <h2 class="heading">Amilia Luna</h2>
+                                        <p>Teacher, Saint Joseph High School</p>
+                                    </div>
+                                </div>
+                                <p>&quot; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rerum officia magnam, placeat delectus nam laborum aut ullam expedita aspernatur ex sit eaque saepe iusto dignissimos dolorem obcaecati, veritatis. Expedita.laborum aut ullam expedita aspernatur. &quot; </p>
+                            </div>
+
+                        </div>
+                        <!-- Customer 04 -->
+                        <div class="col-md-6 col-sm-6 col-xs-12 customer">
+                            <div class="about-customer">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                        <img src="~/Content/Front_Content/images/home/customer-4.png" alt="customer 04" class="img-responsive img-circle img-customer">
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-8">
+                                        <h2 class="heading">Daniel Cardos</h2>
+                                        <p>Software Engineer, Infinitum Company</p>
+                                    </div>
+                                </div>
+                                <p>&quot; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus rerum officia magnam, placeat delectus nam laborum aut ullam expedita aspernatur ex sit eaque saepe iusto dignissimos dolorem obcaecati, veritatis. Expedita.laborum aut ullam expedita aspernatur. &quot; </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="b_footer">
+        <div class="container">
+            <div class="flex-container j-center footer-content col-md-12 col-sm-12 col-xs-12">
+                <div class="footer-con">
+                    <p>
+                        Copyright &copy; TatvaSoft All rights reserved.
+                    </p>
+                </div>
+                <div class="text-right">
+                    <ul class="social-list">
+                        <li><a href="#" class="text-center"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="text-center"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="text-center"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+
+<!--==========================================================================-->
+<!-- j Query -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- bootstrap js file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- Custom JS -->
+<script src="~/Content/Front_Content/js/script _home.js"></script>
+<!--==========================================================================-->
+</body>
+
+</html>

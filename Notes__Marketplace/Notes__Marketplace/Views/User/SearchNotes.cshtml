@@ -1,0 +1,407 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>Search Notes</title>
+    
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/SearchNts.css">
+
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+
+<style type="text/javascript">
+
+    function submitForm()
+    {    
+       document.getElementById('myform').submit();
+    }
+</style>
+
+<!-- Contact US  section -->
+<div id="second_section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12 my_main_heading">
+
+                <h2>
+                    <center>Search Notes</center>
+                </h2>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+<!-- Contact us   section -->
+
+<form>
+    <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Search and Filter notes </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 my_search_section">
+                    <!-- Search form -->
+                    <div class="active-purple-4 mb-4">
+                        @using (Html.BeginForm("SearchNotes", "User", FormMethod.Get,new { @id= "myform" }))
+                        {
+                            <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search" onchange='submitForm();'>
+                        }
+                    </div>
+                    <div class="sarch_ic ">
+                        <p><i class="fa fa-search " aria-hidden="true"></i></p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- 2nd row button drop down-->
+            <div class="row">
+
+
+                <!-- 1st drop down-->
+                <div class="col-sm-2 drop_secton">
+
+                    <div class="btn_border">
+                        <select class="mdb-select md-form" searchable="Search here..">
+                            <option value="" disabled selected>Choose your country</option>
+                            <option value="1">USA</option>
+                            <option value="2">Germany</option>
+                            <option value="3">France</option>
+                            <option value="3">Poland</option>
+                            <option value="3">Japan</option>
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+                <!-- 2st drop down-->
+                <div class="col-sm-2 drop_secton">
+
+                    <div class="btn_border">
+                        <select class="mdb-select md-form" searchable="Search here..">
+                            <option value="" disabled selected>Choose your country</option>
+                            <option value="1">USA</option>
+                            <option value="2">Germany</option>
+                            <option value="3">France</option>
+                            <option value="3">Poland</option>
+                            <option value="3">Japan</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- 3st drop down-->
+                <div class="col-sm-2 drop_secton">
+
+                    <div class="btn_border">
+                        <select class="mdb-select md-form" searchable="Search here..">
+                            <option value="" disabled selected>Choose your country</option>
+                            <option value="1">USA</option>
+                            <option value="2">Germany</option>
+                            <option value="3">France</option>
+                            <option value="3">Poland</option>
+                            <option value="3">Japan</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- 4st drop down-->
+                <div class="col-sm-2 drop_secton">
+
+                    <div class="btn_border">
+                        <select class="mdb-select md-form" searchable="Search here..">
+                            <option value="" disabled selected>Choose your country</option>
+                            <option value="1">USA</option>
+                            <option value="2">Germany</option>
+                            <option value="3">France</option>
+                            <option value="3">Poland</option>
+                            <option value="3">Japan</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- 5st drop down-->
+                <div class="col-sm-2 drop_secton">
+
+                    <div class="btn_border">
+                        <select class="mdb-select md-form" searchable="Search here..">
+                            <option value="" disabled selected>Choose your country</option>
+                            <option value="1">USA</option>
+                            <option value="2">Germany</option>
+                            <option value="3">France</option>
+                            <option value="3">Poland</option>
+                            <option value="3">Japan</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- 6 drop down-->
+                <div class="col-sm-2 drop_secton">
+
+                    <div class="btn_border">
+                        <select class="mdb-select md-form" searchable="Search here..">
+                            <option value="" disabled selected>Choose your country</option>
+                            <option value="1">USA</option>
+                            <option value="2">Germany</option>
+                            <option value="3">France</option>
+                            <option value="3">Poland</option>
+                            <option value="3">Japan</option>
+                        </select>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- end of basic profile detail section -->
+    <!--==================================================================--->
+    <!-- basic head  section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Total 18 notes </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--==================================================================--->
+    <!-- 18 page block --->
+
+    <div id="section_addform">
+        <div class="container">
+            <!--========= 1st row ===========-->
+            <div class="row">
+                <!--======================
+                       for loop is here
+                ============================ -->
+
+                @foreach (var X in Model)
+                {
+                    <!--========= left side ===========-->
+                    <div class="col-sm-4">
+
+                        <div class="my_box">
+                            <img src="@X.DisplayPicture" />
+                        </div>
+
+                        <div class="my_box_text_part">
+                            <!-- Section-1 -->
+                            <div class="container ">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <!--Html.ActionLink("some text", "actionName", "controllerName")-->
+                                        <!--    Html.ActionLink("", "NoteDetails", "User");-->
+                                        <!--new { id = item.LanguageId }-->
+                                        @*@{
+                                                int id = (int)@X.ID;
+                                            }*@
+                                        <h5 id="click_heading">
+                                            @Html.ActionLink(@X.Title, "NoteDetails", "User", new { id = X.ID }, null)
+                                        </h5>
+                                        @*<a href="/User/NoteDetails/id/"><h5 id="click_heading">@X.Title</h5></a>*@
+                                    </div>
+
+                                </div>
+
+                                <!-- 1ng row -->
+                                <div class="l-wrap">
+                                    <div class="three-col-grid">
+                                        <div class="grid-item">
+                                            <i class="fa fa-university" aria-hidden="true"></i>
+                                            @X.UniversityName
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                                <!-- 2ng row -->
+                                <div class="l-wrap">
+                                    <div class="three-col-grid">
+                                        <div class="grid-item">
+                                            <i class="fa fa-book" aria-hidden="true"></i>
+                                            @X.NumberofPages
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                                <!-- 3ng row -->
+                                <div class="l-wrap">
+                                    <div class="three-col-grid">
+                                        <div class="grid-item">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            @X.CreatedDate
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @foreach (var Y in ViewBag.ReviewList)
+                                {
+                                    if (X.ID == Y.NoteID)
+                                    {
+                                        <!---->
+                                        <!-- 4ng row -->
+                                        <div class="l-wrap">
+                                            <div class="three-col-grid">
+
+                                                <div class="grid-item my_red_text">
+                                                    <i class="fa fa-flag-o" aria-hidden="true"></i>
+                                                    @Y.TotalReport  User marked this note as inappropriate
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <!-- 5ng row -->
+                                        <!--  5 star code -->
+                                        <div class="l-wrap">
+                                            <div class="three-col-grid">
+                                                <div class="grid-item">
+                                                    <div class="rate">
+
+                                                        @switch (@Y.AverageRating)
+                                                        {
+                                                            case 1:
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                break;
+
+                                                            case 2:
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                break;
+                                                            case 3:
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                break;
+                                                            case 4:
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                                break;
+
+                                                            case 5:
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                                break;
+                                                        }
+
+
+                                                    </div>
+                                                    <p class="text_review">@Y.TotalReview  reviews</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+
+                                        break;
+                                    }
+                                    else
+                                    {
+
+                                        continue;
+                                    }
+                                }
+                            </div>
+                            <!--  END Section -1 -->
+
+                        </div>
+                        <!-- text box below -->
+                    </div>
+                    <!-- col-4 -->
+                }
+
+            </div>
+            <!--=========end of  1st row ===========================================-->
+
+        </div>
+    </div>
+    <!-- end of 18 page block --->
+    <!--==================================================================--->
+    <div id="section_clgform">
+        <div class="container">
+
+            <!-- page slider or pagination -->
+            <!--<div class="row">
+                <div class="col-sm-12">
+                    <center>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </center>
+
+                </div>
+            </div>-->
+
+            <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+
+        </div>
+    </div>
+    <!--==================================================================--->
+</form>

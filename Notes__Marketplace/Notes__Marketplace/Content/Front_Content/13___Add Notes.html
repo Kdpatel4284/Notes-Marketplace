@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title>Add notes Page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="css/other/addnotes.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!--section -->
+    <section id="">
+        <!-- header  section -->
+        <nav class="navbar ">
+            <div class="container-fluid">
+                <div class="site-nav-wrapper">
+                    <div class="navbar-header">
+                        <!-- Mobile Menu Open Button -->
+                        <span id="mobile-nav-open-btn">&#9776;</span>
+                        <!-- Logo -->
+                        <a class="navbar-brand smooth-scroll h-logo" href="#home">
+                            <img src="images/home/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <!-- Main menu -->
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav pull-right">
+                                <li>
+                                    <a class="btn btn-secondary dropdown-toggle smooth-scroll" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Notes Under Review</a>
+                                        <a class="dropdown-item" href="#">Published Notes</a>
+                                        <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                        <a class="dropdown-item" href="#">Rejected Notes</a>
+
+                                    </div>
+                                </li>
+                                <li><a class="smooth-scroll" href="../front/search-notes.html">Search Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/add-notes.html">Sell Your Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/buyer-request.html">Buyer Requests</a></li>
+                                <li>
+                                    <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img class="my_profile__size " src="images/User-Profile/profile.jpg" alt="author" class="img-circle"></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">My Profile</a>
+                                            <a class="dropdown-item" href="#">My Downloads</a>
+                                            <a class="dropdown-item" href="#">My Sold Notes</a>
+                                            <a class="dropdown-item" href="#">My Rejected Notes</a>
+                                            <a class="dropdown-item" href="#">Change Password</a>
+                                            <a class="dropdown-item a-logout" href="#">LOGOUT</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><button type="submit" class="btn btn-primary btn-lg btn-block  text-center navbar-btn">
+                                        Logout
+                                    </button></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div id="mobile-nav">
+                        <!-- Mobile Menu Open Button -->
+                        <span id="mobile-nav-close-btn">&times;</span>
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li>
+                                    <a>Dashboard</a>
+                                    <i class="fa fa-chevron-down toggle-arrow" data-toggle="collapse" data-target="#collapse-dashboard1"></i>
+                                    <div class="collapse" id="collapse-dashboard1">
+                                        <ul class="header-collapse">
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Notes Under Review</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Published Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Downloaded Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Rejected Notes</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a class="smooth-scroll" href="../front/search-notes.html">Search Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/add-notes.html">Sell Your Notes</a></li>
+                                <li><a class="smooth-scroll" href="../front/buyer-request.html">Buyer Requests</a></li>
+                                <li id="header-profile">
+
+                                    <img class="my_profile__size " src="images/User-Profile/profile.jpg" class="img-circle" data-toggle="collapse" data-target="#collapse-dashboard4" style="margin-left: 15px;">
+                                    <div class="collapse" id="collapse-dashboard4">
+                                        <ul class="header-collapse">
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Profile</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Downloads</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Sold Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">My Rejected Notes</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px">Change Password</a></li>
+                                            <li style="margin-bottom: 2px;"><a href="#" style="font-size: 13px" class="a-logout">LOGOUT</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block text-center">
+                                        Logout
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- end of header  section -->
+
+        <!-- 2nd user profile text   section -->
+        <div id="second_section">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-12 my_main_heading">
+
+                        <h2>
+                            <center>Add Notes</center>
+                        </h2>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of 2nd user profile text   section -->
+        <form>
+            <!-- basic profile detail section -->
+            <div class="section_heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <h2>Basic Note Details </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="section_basicform">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <!-- Titile name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Title *</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your first Name">
+                            </div>
+
+
+                            <!-- Display upload name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1" class="my_lable">Display picture</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <img src="images/User-Profile/upload.png" class="upload_logo">
+                            </div>
+
+                            <!-- type name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Type</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                            </div>
+
+                        </div>
+                        <!--========= right side ===========-->
+                        <div class="col-sm-6">
+
+                            <!-- category name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Category *</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Last Name">
+                            </div>
+
+                            <!--  upload  notes name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1" class="my_lable">Upload Notes *</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <img src="images/User-Profile/upload.png" class="upload_logo">
+                            </div>
+
+
+                            <!-- number of page name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Number of Pages</label>
+
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your phone number">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+
+                            <!--  description name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1" class="my_lable">Description *</label>
+                                <textarea placeholder="Enter your description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of basic profile detail section -->
+
+            <!--==================================================================--->
+            <!-- institution detail section -->
+            <div class="section_heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <h2>Institution Information </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="section_addform">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <!-- address name-->
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Country </label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your country">
+                            </div>
+                        </div>
+                        <!--========= right side ===========-->
+                        <div class="col-sm-6">
+
+                            <!-- address name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Institution Name</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of address detail section -->
+
+
+            <!--==================================================================--->
+            <!-- course detail section -->
+            <div class="section_heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <h2>Course Details </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="section_clgform">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+
+                            <!-- course name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Course Name</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                            </div>
+
+                            <!-- prof/lecture name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Professor / Lecturer</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                            </div>
+
+                        </div>
+                        <!--========= right side ===========-->
+                        <div class="col-sm-6">
+                            <!-- city-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Course Code</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end of address detail section -->
+
+
+
+            <!--==================================================================--->
+            <!-- sellling detail section -->
+            <div class="section_heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <h2>Selling Information </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="section_clgform">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Sell For *</label>
+                                <br>
+                                <label class="radio-inline"><input type="radio" name="optradio" checked>Free</label>
+                                <label class="radio-inline"><input type="radio" name="optradio">Paid</label>
+                            </div>
+
+                            <!-- university name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" class="my_lable">Sell Price *</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your address">
+                            </div>
+
+                        </div>
+                        <!--========= right side ===========-->
+                        <div class="col-sm-6">
+                            <!--  upload  notes name-->
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1" class="my_lable">Note Preview</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                <img src="images/User-Profile/upload.png" class="upload_logo">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <button class="my_button_submit">SAVE</button>
+                            <button class="my_button_submit_pbls">PUBLISH</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end of sellling  section -->
+        </form>
+
+    </section>
+
+    <!-- footer  section -->
+    <div id="section_footer">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <p> Copyright &copy; TatvaSoft All rights reserved.</p>
+                </div>
+
+                <div class="col-sm-8">
+
+                    <p id="footer_icon">
+                        <!-- Add icon library -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                        <!-- Add font awesome icons -->
+                        <a href="#" class="fa fa-facebook"></a>
+
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-linkedin"></a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of footer-->
+    <!--  End of  section -->
+
+    <!--=================================================-->
+
+    <!-- JQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    <!--=================================================-->
+
+</body>
+
+</html>
