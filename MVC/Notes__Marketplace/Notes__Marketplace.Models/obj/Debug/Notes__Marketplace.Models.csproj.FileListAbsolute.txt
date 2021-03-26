@@ -1,6 +1,0 @@
-D:\ASP net MVC5__Projects\Notes__Marketplace\Notes__Marketplace.Models\bin\Debug\Notes__Marketplace.Models.dll
-D:\ASP net MVC5__Projects\Notes__Marketplace\Notes__Marketplace.Models\bin\Debug\Notes__Marketplace.Models.pdb
-D:\ASP net MVC5__Projects\Notes__Marketplace\Notes__Marketplace.Models\obj\Debug\Notes__Marketplace.Models.csprojAssemblyReference.cache
-D:\ASP net MVC5__Projects\Notes__Marketplace\Notes__Marketplace.Models\obj\Debug\Notes__Marketplace.Models.csproj.CoreCompileInputs.cache
-D:\ASP net MVC5__Projects\Notes__Marketplace\Notes__Marketplace.Models\obj\Debug\Notes__Marketplace.Models.dll
-D:\ASP net MVC5__Projects\Notes__Marketplace\Notes__Marketplace.Models\obj\Debug\Notes__Marketplace.Models.pdb
