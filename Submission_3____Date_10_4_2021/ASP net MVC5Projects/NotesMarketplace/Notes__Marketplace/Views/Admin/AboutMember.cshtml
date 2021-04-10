@@ -1,0 +1,355 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>About Member</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+@{
+    Notes_MarketPlace.Db.UserProfile UserData = ViewBag.dataofmember;
+    List<Notes_MarketPlace.Db.Users_New> uData = ViewBag.UserData;
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.MYNoteList;
+    List<Notes_MarketPlace.Db.NoteCategories> allCate = ViewBag.NotesCategories;
+    List<Notes_MarketPlace.Db.ReferenceData> RNotes = ViewBag.AllRefrence;
+    List<Notes_MarketPlace.Db.NumberofDownloads> Dwn = ViewBag.NofD;
+}
+ 
+
+   
+
+
+            <!-- Custome CSS -->
+            <!--   bg set of n top-nav bar here -->
+            <div class="bg__dash_nav">
+
+                <br><br><br><br>
+
+            </div>
+            <br>
+            <br>
+
+            <!--===========  member part ===================--->
+            <section id="dash">
+
+                <!-- container -->
+                <div class="container">
+                    <!-- title and  button row -->
+                    <!-- row-1 -->
+                    <div class="row">
+                        <!-- column 01-->
+                        <div class="col-sm-12">
+                            <div id="mdetails_h2">
+                                <h2>Member Details</h2>
+
+                            </div>
+                        </div>
+                        <!-- end of column 01-->
+                    </div>
+                    <!-- end of row-1 -->
+                    <!-- row-2 -->
+                    <div class="row">
+                        <!-- column 01-->
+                        <div class="col-sm-6">
+
+                            <div id="member_details_content">
+                                <div id="member_img">
+                                    <img style="width:200px; height:220px;" src="@UserData.ProfilePicture">
+
+                                </div>
+                                <div>
+
+                                    @foreach (var uobj in uData)
+                                    {
+                                        if (UserData.UserID == uobj.ID)
+                                        {
+                                            <div class="algin_cnt_mdetails">
+
+                                                <p>First Name :</p>
+                                                <p class="blue_text">@uobj.FirstName</p>
+
+                                            </div>
+
+                                        }
+
+                                    }
+
+
+                                    @foreach (var uobj in uData)
+                                    {
+                                        if (UserData.UserID == uobj.ID)
+                                        {
+                                            <div class="algin_cnt_mdetails">
+
+                                                <p>First Name :</p>
+                                                <p class="blue_text">@uobj.LastName</p>
+
+                                            </div>
+
+                                        }
+
+                                    }
+                                    <div class="algin_cnt_mdetails">
+
+                                        <p>Email:</p>
+                                        <p class="blue_text">@UserData.SecondaryEmailAddress</p>
+
+                                    </div>
+                                    <div class="algin_cnt_mdetails">
+
+                                        <p>DOB :</p>
+                                        <p class="blue_text">@UserData.DOB</p>
+
+                                    </div>
+                                    <div class="algin_cnt_mdetails">
+
+                                        <p>Phone Number :</p>
+                                        <p class="blue_text">@UserData.Phonenumber</p>
+
+                                    </div>
+                                    <div class="algin_cnt_mdetails">
+
+                                        <p>College/University</p>
+                                        <p class="blue_text">@UserData.University</p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- end of column 01-->
+
+                        <div class="col-sm-1">
+
+
+                            <div class="vl"></div>
+                        </div>
+
+                        <!-- end of row -->
+                        <!-- column 02-->
+                        <div class="col-sm-4">
+
+                            <div>
+                                <div class="algin_cnt_mdetails">
+
+                                    <p>Address 1 :</p>
+                                    <p class="blue_text">@UserData.AddressLine1</p>
+
+                                </div>
+
+                                <div class="algin_cnt_mdetails">
+
+                                    <p>Address 2 :</p>
+                                    <p class="blue_text">@UserData.AddressLine2</p>
+
+
+                                </div>
+                                <div class="algin_cnt_mdetails">
+
+                                    <p>City :</p>
+                                    <p class="blue_text">@UserData.City</p>
+
+                                </div>
+                                <div class="algin_cnt_mdetails">
+
+                                    <p>State :</p>
+                                    <p class="blue_text">@UserData.State</p>
+
+                                </div>
+                                <div class="algin_cnt_mdetails">
+
+                                    <p>Country :</p>
+                                    <p class="blue_text">@UserData.Country</p>
+
+                                </div>
+                                <div class="algin_cnt_mdetails">
+
+                                    <p>Zip Code:</p>
+                                    <p class="blue_text">@UserData.ZipCode</p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- end of column 02-->
+                    </div>
+                    <hr id="line_mdtails">
+                    <!-- end of row -->
+                    <!--======================table with search btn==========================-->
+                    <!-- table title row -->
+                    <div class="row">
+                        <!-- column 01-->
+                        <div class="col-sm-12">
+
+                            <div class="deash_title_btn_table">
+                                <div>
+                                    <h2 id="members_h2">Notes</h2>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <!-- end of column 01-->
+                    </div>
+                    <!-- end of row -->
+                    <!-- Table 01 row -->
+                    <div class="row">
+                        <!-- column 01-->
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        
+                                            <th scope="col">NOTE TITLE</th>
+                                            <th scope="col">CATEGORY</th>
+                                            <th scope="col">STATUS</th>
+                                            <th scope="col">DOWNLOADED NOTES</th>
+                                            <th scope="col">TOTAL EARNING</th>
+                                            <th scope="col">DATE ADDED</th>
+                                            <th scope="col">PUBLISHED DATE</th>
+                                            <th scope="col">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var N in Model)
+                                        {
+
+                                        <tr>
+
+                                            
+                                            <td>@Html.ActionLink(N.Title, "AdminNoteDetails", "Admin", new { id = N.ID }, null)</td>
+
+                                            @foreach (var Cobj in allCate)
+                                            {
+                                                if (N.Category == Cobj.ID)
+                                                {
+                                                    <td>@Cobj.Name</td>
+
+                                                }
+
+                                            }
+
+
+                                            @foreach (var Nobj in RNotes)
+                                            {
+                                                if (N.Status == Nobj.ID)
+                                                {
+                                                    <td>@Nobj.Value</td>
+
+                                                }
+
+                                            }
+
+
+
+                                            @foreach (var D in Dwn)
+                                            {
+                                                if (N.ID == D.NoteID)
+                                                {
+                                                    <td>@D.Downloads</td>
+
+                                                }
+
+                                            }
+
+
+                                            @foreach (var D in Dwn)
+                                            {
+                                                if (N.ID == D.NoteID)
+                                                {
+                                                    var x = D.Downloads * N.SellingPrice;
+                                                    <td>@x</td>
+
+                                                }
+
+                                            }
+
+                                            <td>@N.CreatedDate</td>
+                                            <td>@N.PublishedDate</td>
+
+                                            <td class="icon_align">
+
+                                                <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                        <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                        @*name="noteid" value="@obj.ID"*@
+                                                        @*<a class="dropdown-item" href="#">Download Notes</a>*@
+
+                                                        @Html.ActionLink("Download Notes", "RequestForDownload", "User", new { noteid = N.ID }, null)
+
+                                                        @*@Html.ActionLink("View More Details", "AdminNoteDetails", "Admin", new { id = X.ID }, null)
+
+                                                        @Html.ActionLink("Unpublish", "UnpublishNotes", "Admin", new { noteid = X.ID, Seller = X.SellerID, ntsTitle = X.Title }, null)*@
+
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                        }
+
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end of column 01-->
+                    </div>
+                    <!-- end of row -->
+                    <!-- row -->
+                    <div class="row">
+                        <!-- column 01-->
+                        <div class="col-sm-12">
+
+                            <center>@Html.PagedListPager(Model, aboutmemberindex => Url.Action("AboutMember", "Admin", new { aboutmemberindex, MyUserID = UserData.UserID }))</center>
+
+                        </div>
+                        <!-- end of column 01-->
+                    </div>
+                    <!-- end of row <-->
+                    <!--======================table with search btn + paging==========================-->
+                </div>
+                <!--  end of container -->
+            </section>
+            <!--===========End  ABOUT member part===================--->

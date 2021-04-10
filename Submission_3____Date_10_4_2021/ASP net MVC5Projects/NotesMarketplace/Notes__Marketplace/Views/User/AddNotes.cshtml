@@ -1,0 +1,389 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title> Add Notes</title>
+
+}
+<!-- =====================Custome CSS============================== -->
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/AddNotes.css">
+
+
+}
+<!--  ====================javascript is here =======================-->
+
+
+<script type="text/javascript">
+    //button Enable
+
+
+
+    //hide upload img code
+    function getname() {
+
+        if ($("#input_dp").val() != "") {
+
+            $("#dp").hide();
+        }
+
+
+
+        if ($("#input_notes").val() != "") {
+
+            $("#notes").hide();
+        }
+
+        if ($("#input_Preview").val() != "") {
+
+            $("#Preview").hide();
+        }
+
+    }
+
+
+
+</script>
+
+
+
+
+<!-- model-->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+
+<!-- 2nd user profile text   section -->
+<div id="second_section" onload="btndisble();">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12 my_main_heading">
+
+                <h2>
+                    <center>Add Notes</center>
+                </h2>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- end of 2nd user profile text   section -->
+@using (Html.BeginForm("AddNotes", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    
+        if (ViewBag.EditDatamsg != null)
+        {
+                   
+            <input type="hidden" name="EditNoteID" value=@ViewBag.EditDatamsg />
+        
+
+         }
+        <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Basic Note Details </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    
+                    <!-- Titile name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Title *</label>
+                        <input type="text" name="Title" value="@ViewBag.Title" class="form-control" id="exampleFormControlInput1" placeholder="Enter Notes Title ">
+                        <p class="text-danger">@Html.ValidationMessage("Title")</p>
+                    </div>
+
+
+                    <!-- Display picture img type -->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Display picture</label>
+                        <input type="file" name="DisplayPicture" class="form-control" id="input_dp" onchange="getname();"></input>
+                        <img src="~/Content/Front_Content/images/User-Profile/upload.png" id="dp" class="upload_logo" style="">
+                        @if (@ViewBag.Dp != null)
+                        {
+                            <img src="@ViewBag.Dp" width="70" height="70" style="margin:5px; border-radius:5px;" />
+                        }
+
+                    </div>
+
+                    
+                    <!-- type name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Type</label>
+                        <!--  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">-->
+                        @Html.DropDownList("Note_Type", new SelectList(ViewBag.notetypelist, "ID", "Name"), new { @class = "form-control" })
+                        <p class="text-danger">@Html.ValidationMessage("Note_Type")</p>
+                        <p style="color:green">@ViewBag.NoteType</p>
+                    </div>
+
+                </div>
+                <!--========= right side  ===========-->
+                <!-- at Html.DropDownList("dropdown",new SelectList(ViewBag.list,"ID","Categary")) -->
+                <div class="col-sm-6">
+
+                    <!-- category name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Category *</label>
+                        <!--<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Last Name">-->
+                        @Html.DropDownList("Category", new SelectList(ViewBag.categorylist, "ID", "Name"), new { @class = "form-control" })
+                        <p class="text-danger">@Html.ValidationMessage("Category")</p>
+                        <p style="color:green">@ViewBag.Category</p>
+                    </div>
+
+                    <!--  upload  notes name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Upload Notes *</label>
+                        <input type="file" name="NotesAttachements" class="form-control" id="input_notes" onchange="getname();"></input>
+                        <img src="~/Content/Front_Content/images/User-Profile/upload.png" id="notes" class="upload_logo">
+                        <p class="text-danger">@Html.ValidationMessage("NotesAttachements")</p>
+                    </div>
+
+
+                    <!-- number of page name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Number of Pages</label>
+
+                        <input type="number" value="@ViewBag.NOFPage" name="NumberofPages" class="form-control" id="exampleFormControlInput1" placeholder="Enter number of pages">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <!--  description name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Description *</label>
+                        <textarea name="Description" placeholder="Enter your description" class="form-control" rows="3">@ViewBag.Description</textarea>
+                        <p class="text-danger">@Html.ValidationMessage("Description")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of basic profile detail section -->
+    <!--==================================================================--->
+    <!-- institution detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Institution Information </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_addform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <!-- address name-->
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Country </label>
+                        <!--   <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your country">-->
+                        @Html.DropDownList("Country", new SelectList(ViewBag.countrieslist, "ID", "Name"), new { @class = "form-control" })
+                        <p style="color:green">@ViewBag.Country</p>
+                    </div>
+                </div>
+                <!--========= right side ===========-->
+                <div class="col-sm-6">
+
+                    <!-- Institute name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Institution Name</label>
+                        <input type="text" value="@ViewBag.UniversityName" name="UniversityName" class="form-control" placeholder="Enter Institution Name">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of address detail section -->
+    <!--==================================================================--->
+    <!-- course detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Course Details </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_clgform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+
+                    <!-- course name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Course Name</label>
+                        <input type="text" value="@ViewBag.Course" name="Course" class="form-control" placeholder="Enter Course Name">
+
+                    </div>
+
+                    <!-- prof/lecture name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Professor / Lecturer</label>
+                        <input type="text" name="Professor" value="@ViewBag.Professor" class="form-control" placeholder="Enter Professor Name">
+                    </div>
+
+                </div>
+                <!--========= right side ===========-->
+                <div class="col-sm-6">
+                    <!-- city-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Course Code</label>
+                        <input type="text" name="CourseCode" class="form-control" value="@ViewBag.CourseCode" placeholder="Enter your email address">
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- end of address detail section -->
+    <!--==================================================================--->
+    <!-- sellling detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Selling Information </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_clgform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    @if (@ViewBag.PriceData != null)
+                    {
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="my_lable">Sell For *</label>
+                            <br>
+                            <label class="radio-inline"><input type="radio" name="IsPaid" value="Free" @ViewBag.free>Free</label>
+                            <label class="radio-inline"><input type="radio" name="IsPaid" value="Paid" @ViewBag.piad>Paid</label>
+                        </div>
+
+                        <!-- selling Price name-->
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="my_lable">Sell Price *</label>
+                            <input type="text" name="SellingPrice" value=@ViewBag.price class="form-control" placeholder="Enter your address">
+                        </div>
+
+                    }
+                    else
+                    {
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="my_lable">Sell For *</label>
+                            <br>
+                            <label class="radio-inline"><input type="radio" name="IsPaid" value="Free">Free</label>
+                            <label class="radio-inline"><input type="radio" name="IsPaid" value="Paid">Paid</label>
+                        </div>
+
+                        <!-- selling Price name-->
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" class="my_lable">Sell Price *</label>
+                            <input type="text" name="SellingPrice" value="0" class="form-control" placeholder="Enter your address">
+                        </div>
+                    }
+
+
+                </div>
+
+                <!--========= right side ===========-->
+                <div class="col-sm-6">
+                    <!--  upload  notes name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Note Preview</label>
+                        <input type="file" name="NotesPreview" class="form-control" id="input_Preview" onchange="getname();"></input>
+                        <img src="~/Content/Front_Content/images/User-Profile/upload.png" id="Preview" class="upload_logo">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <button type="submit" class="my_button_submit">SAVE</button>
+                </div>
+            </div>
+
+            <h5 class="text-danger"> @ViewBag.e_msg</h5>
+            <h4 style="color:forestgreen;"> @ViewBag.e_msgs</h4>
+        </div>
+    </div>
+    <!-- end of sellling  section -->
+
+}
+<div>
+    <div class="container">
+        <div class="row">
+
+            @if (@ViewBag.disable == "true")
+            {
+
+                <button type="submit" class="my_button_submit_pbls" disabled>PUBLISH</button>
+            }
+            else
+            {
+                using (Html.BeginForm("Publish", "User", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value=@ViewBag.returnid />
+                    <button type="submit" class="my_button_submit_pbls">PUBLISH</button>
+                }
+            }
+        </div>
+    </div>
+
+</div>

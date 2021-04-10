@@ -1,0 +1,198 @@
+﻿@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>My Downloads</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Dashboard.css">
+
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+
+    //List<Notes_MarketPlace.Db.Downloads> Dobj = ViewBag.DownloadDataList;
+    IPagedList<Notes_MarketPlace.Db.Downloads> Dobj = ViewBag.DownloadDataList;
+    //List<Notes_MarketPlace.Db.SellerNotesReviews> Robj = ViewBag.ReviewDataList;
+}
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+
+
+
+<!--=========== my dwnlod part ===================--->
+
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+
+        <br><br>
+        <br />
+        <!--====================== publish table with search btn==========================-->
+        <!-- table title row -->
+        <center><h4 style="color:orange; font-size:18px;">@ViewBag.msgforRequested </h4></center>
+        <center><h4 style="color:green; font-size:18px;">@ViewBag.msgFromReview </h4></center>
+        <center><h4 style="color:orange; font-size:18px;">@ViewBag.msgReviewisthere</h4></center>
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table_dwn">
+                    <h2 id="mydown">My Downloads</h2>
+                    <!-- Search form -->
+                    <div id="my_search_dwn">
+
+                        @using (Html.BeginForm("MyDownload", "User", FormMethod.Get))
+                        {
+
+                            <input name="DownloadDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" id="add_note_btn_search">SEARCH</button>
+                        }
+
+                    </div>
+
+                    @*@using (Html.BeginForm("Dashboard", "User", FormMethod.Get))
+                    {
+                    <input name="IPNotes" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                    <button type="submit" id="add_note_btn_search">SEARCH</button>
+                    }*@
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">SR No.</th>
+                                <th scope="col">TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">BUYER</th>
+                                <th scope="col">SELL TYPE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">DOWNLOAD DATE/TIME</th>
+                                <th scope="col">View</th>
+                                <th scope="col">Edit</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var Data in Dobj)
+                            {
+
+
+                                <tr>
+
+                                    <td scope="row"></td>
+                                    <td>@Data.NoteTitle</td>
+                                    <td>@Data.NoteCategory</td>
+                                    <td scope="row">@ViewBag.LoginUserEmail</td>
+                                    @if (Data.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+
+                                    <td>@Data.PurchasedPrice</td>
+                                    <td>@Data.AttachmentDownloadedDate</td>
+                                    <td class="icon_align">
+
+                                        <a href="@Url.Action("NoteDetails", "User", new { id = Data.NoteID }, null)" style="background-color:transparent; border:none;">
+                                            <img src="~/Content/Front_Content/images/dashboard/eye.png">
+                                        </a>
+                                        @*<img src="~/Content/Front_Content/images/dashboard/eye.png">*@
+
+                                    </td>
+                                    <td>
+                                        @if (Data.IsSellerHasAllowedDownload == true)
+                                        {
+                                            <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                    <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                    @*name="noteid" value="@obj.ID"*@
+                                                    @*<a class="dropdown-item" href="#">Download Notes</a>*@
+                                                    @Html.ActionLink("Download Notes", "RequestForDownload", new { noteid = Data.NoteID })
+
+                                                    @Html.ActionLink("Add Review", "AddReviewOfNotes", new { noteid = Data.NoteID })
+                                                    @Html.ActionLink("Report", "ReportNotes", new { NoteID = Data.NoteID, Title=Data.NoteTitle, SellerID=Data.Seller })
+                                                </div>
+
+                                            </div>
+
+                                        }
+
+
+
+
+                                    </td>
+                                </tr>
+
+
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>
+                    <center>@Html.PagedListPager(Dobj, Downloadpage => Url.Action("MyDownload", "User", new { Downloadpage, DownloadDATA = Request.QueryString["DownloadDATA"] }))</center>
+                </center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+</section>
+<!--=============================================================================================================================-->
+
+
+
+<!--========================================POPUP=================================================================================-->
+<!-- Thanks popup -->
+<!-- Button trigger modal -->
+@*<div class="POP_btn">
+        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
+            Launch Add review PopUp!
+        </button>
+    </div>*@

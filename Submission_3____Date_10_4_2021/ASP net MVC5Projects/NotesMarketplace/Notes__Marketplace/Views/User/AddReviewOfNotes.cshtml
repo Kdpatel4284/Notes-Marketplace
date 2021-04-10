@@ -1,0 +1,227 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddReviewOfNotes</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/bootstrap/bootstrap.min.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/responsive.css">
+</head>
+<body style="background-color:#bdb2b2">
+    <!-- Modal -->
+    
+    <div style=" margin-top:150px;   background-color:white; width:700px; height:450px; margin-left:400px; border-radius:10px; padding:50px;">
+
+
+        @using (Html.BeginForm("AddReviewOfNotes", "User", FormMethod.Post))
+        {
+
+           <center>
+               
+               <h2 style="margin-top:10px; font-size:36px; color:#6255a5; font-weight:600;">
+                   Add Review
+               </h2>  
+               </center> 
+                   <input type="hidden" name="noteID" value="@ViewBag.MyNoteID"/>
+                    <!--  5 star code -->
+                    <div class="l-wrap">
+                        <div class="three-col-grid">
+                            <div class="grid-item">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text">1 star</label>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!---->
+                    <div class="my_cmt">
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Comments *</label>
+                            <br>
+                            <textarea name="Comment" style="width:90%; height:100px;" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="comments...."></textarea>
+                            
+                        </div>
+                       
+                        <button type="submit" class="btn_rvsubmit"> SUBMIT</button>
+
+
+                    </div>
+
+                      }
+
+
+
+
+
+    </div>
+
+    
+ 
+                    
+
+    <!-- END of thanks popup -->
+    <!--===========End download part===================--->
+
+<style type="text/css">
+            /* ================
+           POPUP THANKS
+        ==================*/
+            .POP_btn {
+                width: 100%;
+                height: auto;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-line-pack: center;
+                align-content: center;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                align-items: center;
+                padding: 30px;
+            }
+
+            .img_pop_menu {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-line-pack: center;
+                align-content: center;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                padding: 15px;
+            }
+
+                .img_pop_menu img {
+                    height: 63px;
+                    width: 63px;
+                }
+
+            #exampleModalLabel {
+                font-family: Open Sans, sans-serif;
+                font-size: 26px;
+                font-weight: 600;
+                color: #6255a5;
+            }
+
+            .modal-body {
+                padding: 35px;
+            }
+
+                .modal-body h5 {
+                    font-family: Open Sans, sans-serif;
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: #333333;
+                }
+
+                .modal-body p {
+                    font-family: Open Sans, sans-serif;
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: #333333;
+                }
+
+            /* ================
+          POPUP Addreview
+        ==================*/
+
+
+            /*========== 5 start code =============*/
+            .rate {
+                float: left;
+                height: 46px;
+                padding: 0 10px;
+            }
+
+                .rate:not(:checked) > input {
+                    position: absolute;
+                    top: -9999px;
+                }
+
+                .rate:not(:checked) > label {
+                    float: right;
+                    width: 1em;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    cursor: pointer;
+                    font-size: 45px;
+                    color: #ccc;
+                }
+
+                    .rate:not(:checked) > label:before {
+                        content: '★ ';
+                    }
+
+                .rate > input:checked ~ label {
+                    color: #ffc700;
+                }
+
+                .rate:not(:checked) > label:hover,
+                .rate:not(:checked) > label:hover ~ label {
+                    color: #deb217;
+                }
+
+                .rate > input:checked + label:hover,
+                .rate > input:checked + label:hover ~ label,
+                .rate > input:checked ~ label:hover,
+                .rate > input:checked ~ label:hover ~ label,
+                .rate > label:hover ~ input:checked ~ label {
+                    color: #c59b08;
+                }
+
+            .my_cmt {
+                position: relative;
+                margin-top: 50px;
+            }
+
+            .btn_rvsubmit {
+                background-color: #6255a5;
+                width: 110px;
+                height: 35px;
+                border-radius: 5px;
+                color: white;
+                font-size: 18px;
+                margin-top: 25px;
+            }
+
+            /* ================
+           END POPUP THANKS CSS
+        ==================*/
+    </style>
+
+
+
+</body>
+</html>

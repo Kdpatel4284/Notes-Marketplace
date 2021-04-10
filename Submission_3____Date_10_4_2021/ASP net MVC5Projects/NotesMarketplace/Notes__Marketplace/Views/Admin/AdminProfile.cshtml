@@ -1,0 +1,139 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Manage System Configuration </title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/userprofile_style.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+<!--=============================================================================================-->
+
+@using (Html.BeginForm("AdminProfile", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>My Profile </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <!-- first name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">First Name *</label>
+                        <input type="text" class="form-control" value="@ViewBag.fname" id="exampleFormControlInput1" placeholder="Enter your first Name" disabled>
+                    </div>
+
+                    <!-- last name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Last Name *</label>
+                        <input type="text" value="@ViewBag.lname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Last Name" disabled>
+                    </div>
+
+                    <!-- email-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Email *</label>
+                        <input type="email" class="form-control" value="@ViewBag.email" id="exampleFormControlInput1" placeholder="Enter your email address" disabled>
+                    </div>
+
+                    <!-- Secondary email-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Secondary Email</label>
+                        <input type="email" name="SecondaryEmailAddress" value="@ViewBag.semail" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                        <p class="text-danger">@Html.ValidationMessage("SecondaryEmailAddress")</p>
+                    </div>
+
+                    <!-- phone name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Phone Number</label>
+                        <div id="phone_profile_aglin">
+
+
+                            @Html.DropDownList("PhonenumberCountryCode", new SelectList(ViewBag.Codelist, "Code1", "Code1"), new { @class = "form-control" })
+                            <p class="text-danger">@Html.ValidationMessage("PhonenumberCountryCode")</p>
+
+                            <div>
+                                <input type="text" name="Phonenumber" class="form-control" value="@ViewBag.phone" id="exampleFormControlInput1_phone" placeholder="Enter your phone number">
+                            </div>
+                            <p class="text-danger">@Html.ValidationMessage("Phonenumber")</p>
+                        </div>
+                        <p style="color:green; margin-left:15px;">@ViewBag.code</p>
+
+                    </div>
+
+                    <!-- Profile upload name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Profile picture</label>
+                        <input type="file" name="ProfilePicture" class="form-control" id="input_Preview" onchange="getname();"></input>
+                        <img src="~/Content/Front_Content/images/User-Profile/upload.png" id="Preview" style=" position: absolute; margin-top: -32px; margin-left: 281px; height: 30px;">
+                        <img src="@ViewBag.Profilepic" width="42" height="42" style="margin:5px; border-radius:20px;" />
+                        @*<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <img src="~/Content/Front_Content/images/User-Profile/upload.png" class="upload_logo">*@
+                    </div>
+                </div>
+
+            </div>
+            <!--========= right side ===========-->
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <button class="my_button_submit">SUBMIT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end of address detail section -->
+}

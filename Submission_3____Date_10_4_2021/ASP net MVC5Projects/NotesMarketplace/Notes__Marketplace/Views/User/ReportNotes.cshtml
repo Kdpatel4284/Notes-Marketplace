@@ -1,0 +1,169 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ReportNotes</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/bootstrap/bootstrap.min.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/responsive.css">
+</head>
+<body style="background-color:#bdb2b2">
+    <!-- Modal -->
+
+    <div style=" margin-top:150px;   background-color:white; width:700px; height:450px; margin-left:400px; border-radius:10px; padding:50px;">
+
+
+        @using (Html.BeginForm("ReportNotes", "User", FormMethod.Post))
+        {
+
+            <center>
+
+                <h2 style="margin-top:10px; font-size:36px; color:#6255a5; font-weight:600;">
+                    Report Notes
+                </h2>
+            </center>
+            <br><br />
+            <div class="form-group">
+
+                <label for="exampleFormControlTextarea1">Note Title</label><br />
+                <input  type="hidden" name="NotesTitle" value="@ViewBag.Title"/>
+                <p style="font-size:16px; font-weight:500; color:green;">@ViewBag.Title</p>
+                <input type="hidden" name="noteID" value="@ViewBag.NoteID" />
+
+                <input type="hidden" name="SellerID" value="@ViewBag.SellerID" />
+                <label for="exampleFormControlTextarea1">Remark *</label><br />
+                <input style="width:300px; height:35px;   border-radius:3px;" type="text" name="Remark" />
+                <p class="text-danger">@Html.ValidationMessage("Remark")</p>
+
+                <br>
+                <!---->
+
+                <button type="submit" class="btn_rvsubmit" style="width:150px;">Report</button>
+
+            </div>
+
+
+        }
+
+
+
+
+
+    </div>
+
+
+
+
+
+    <!-- END of thanks popup -->
+    <!--===========End download part===================--->
+
+    <style type="text/css">
+        /* ================
+                   POPUP THANKS
+                ==================*/
+        .POP_btn {
+            width: 100%;
+            height: auto;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-line-pack: center;
+            align-content: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .img_pop_menu {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-line-pack: center;
+            align-content: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+            .img_pop_menu img {
+                height: 63px;
+                width: 63px;
+            }
+
+        #exampleModalLabel {
+            font-family: Open Sans, sans-serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: #6255a5;
+        }
+
+        .modal-body {
+            padding: 35px;
+        }
+
+            .modal-body h5 {
+                font-family: Open Sans, sans-serif;
+                font-size: 18px;
+                font-weight: 600;
+                color: #333333;
+            }
+
+            .modal-body p {
+                font-family: Open Sans, sans-serif;
+                font-size: 16px;
+                font-weight: 400;
+                color: #333333;
+            }
+
+        /* ================
+                  POPUP Addreview
+                ==================*/
+
+
+
+
+        .my_cmt {
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .btn_rvsubmit {
+            background-color: #6255a5;
+            width: 110px;
+            height: 35px;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            margin-top: 25px;
+        }
+
+        /* ================
+                   END POPUP THANKS CSS
+                ==================*/
+    </style>
+
+
+
+</body>
+</html>

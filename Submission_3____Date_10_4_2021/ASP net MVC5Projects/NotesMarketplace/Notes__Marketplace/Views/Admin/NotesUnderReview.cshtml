@@ -1,0 +1,269 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Notes Under Review</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+@{
+
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> Model= ViewBag.ReviewNoteList;
+    List<Notes_MarketPlace.Db.Users_New> UserData = ViewBag.UserData;
+    List<Notes_MarketPlace.Db.NoteCategories> NC = ViewBag.NotesCategories;
+
+ }
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+<!--==================================================================================================================================================--->
+
+<!--===========  NotesUnder review part ===================--->
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+        <div class="row" id="row_1">
+
+            <div class="col-sm-12">
+                <div class="deash_title_btn">
+                    <h2> Notes Under Review</h2>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of row -->
+        <center><h4 style="color:green; font-size:18px;">@ViewBag.approvemsg </h4></center>
+        <center><h4 style="color:green; font-size:18px;">@ViewBag.Rejectemsg </h4></center>
+
+
+
+        <!-- my custom box row -->
+        <div>
+            <p>Seller</p>
+        </div>
+
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    @using (Html.BeginForm("NotesUnderReview", "Admin", FormMethod.Get))
+                    {
+                        <div>
+                            @Html.DropDownList("Seller", new SelectList(ViewBag.UserData, "ID", "FirstName"), new { @class = "form-control", @id = "Ultra", @onchange = "this.form.submit()" })
+                        </div>
+                    }
+                    <!-- Search form -->
+                    <div id="search_btn_drop_aglin">
+                        <div id="serach_btn">
+                            @using (Html.BeginForm("NotesUnderReview", "Admin", FormMethod.Get))
+                            {
+
+                                <input name="NotesUnderReviewDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button type="submit" id="add_note_btn_search">SEARCH</button>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col"> NOTE TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">SELLER</th>
+                                <th></th>
+                                <th scope="col">DATE ADDED</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">ACTION</th>
+
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (var X in Model)
+                            {
+
+                                <tr>
+
+                                    <td>@Html.ActionLink(X.Title, "AdminNoteDetails", "Admin", new { id = X.ID }, null)</td>
+
+                                    @foreach (var Cobj in NC)
+                                    {
+                                        if (X.Category == Cobj.ID)
+                                        {
+                                            <td>@Cobj.Name</td>
+
+                                        }
+
+                                    }
+
+                                    @foreach (var uobj in UserData)
+                                    {
+                                        if (X.SellerID == uobj.ID)
+                                        {
+                                            <td>@uobj.FirstName  @uobj.LastName</td>
+
+                                        }
+
+                                    }
+
+                                    <td>
+                                        @*@Html.ActionLink("View More Details", "AboutMember", "Admin", new { MyUserID = X.UserID }, null)*@
+                                        <a href="@Url.Action("AboutMember","Admin", new {  MyUserID = X.SellerID }, null)" style="background-color:transparent; border:none;">
+                                            <img src="~/Content/Admin/images/dashboard/eye.png" style="width:25px; height:25px;">
+                                        </a>
+                                    </td>
+                                    <td>@X.CreatedDate </td>
+
+                                    @if (X.Status == 4)
+                                    {
+                                        <td>Submmited For Review</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>In Review</td>
+                                    }
+
+                                    <td>
+                                        <div class="btn_align_nur">
+                                            @using (Html.BeginForm("ApproveNotes", "Admin", FormMethod.Get))
+                                            {
+                                                <input type="hidden" name="NoteID" value="@X.ID" />
+                                                <button type="submit" class="btn_approve">
+                                                    Approve
+                                                </button>
+                                            }
+                                            @using (Html.BeginForm("RejectNotes", "Admin", FormMethod.Get))
+                                            {
+                                                <input type="hidden" name="RejectNoteID" value="@X.ID" />
+                                                <input type="hidden" name="title" value="@X.Title" />
+                                                <button type="submit" class="btn_reject">
+                                                    Reject
+                                                </button>
+                                            }
+
+                                            @using (Html.BeginForm("NotesINReview", "Admin", FormMethod.Get))
+                                            {
+                                                <input type="hidden" name="NoteID" value="@X.ID" />
+                                                <button type="submit" class="btn_inreview">
+                                                    InReview
+                                                </button>
+                                            }
+                                        </div>
+                                    </td>
+
+
+                                    <td class="icon_align">
+
+
+                                        <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                @*name="noteid" value="@obj.ID"*@
+                                                @*<a class="dropdown-item" href="#">Download Notes</a>*@
+
+                                                @Html.ActionLink("Download Notes", "RequestForDownload", "User", new { noteid = X.ID }, null)
+
+                                                @Html.ActionLink("View More Details", "AdminNoteDetails", "Admin", new { id = X.ID }, null)
+
+                                                @*@Html.ActionLink("Unpublish", "UnpublishNotes", "Admin", new { noteid = X.ID, Seller = X.SellerID, ntsTitle = X.Title }, null)*@
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Model, notesReviewindex => Url.Action("NotesUnderReview", "Admin", new { notesReviewindex, NotesUnderReviewDATA = Request.QueryString["NotesUnderReviewDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+
+    </div>
+    <!--  end of container -->
+    <center><h4 style="color:green; font-size:18px;">@ViewBag.NoData</h4></center>
+</section>
+<!--===========End  Notes Under Review part===================--->

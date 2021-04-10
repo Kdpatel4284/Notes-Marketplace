@@ -1,0 +1,210 @@
+﻿@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>Buyer Requests</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Dashboard.css">
+
+}
+
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+@using PagedList.Mvc;
+@using PagedList;
+<!--===========  Buyer Req part ===================--->
+
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <br><br>
+        <!--====================== publish table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table_dwn">
+                    <h2 id="mydown">Buyer Requests</h2>
+                    <!-- Search form -->
+                    <div id="my_search_dwn">
+                        @using (Html.BeginForm("BuyerRequests", "User", FormMethod.Get))
+                        {
+
+                            <input name="BuyerDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" id="add_note_btn_search">SEARCH</button>
+
+                        }
+
+                        @*@using (Html.BeginForm("MyDownload", "User", FormMethod.Get))
+        {
+
+            <input name="DownloadDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+            <button type="submit" id="add_note_btn_search">SEARCH</button>
+        }*@
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">SR No.</th>
+                                <th scope="col">TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">BUYER</th>
+                                <th scope="col">PHONE NO</th>
+                                <th scope="col">SELL TYPE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">DOWNLOAD DATE/TIME</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                // Download Table dataViewBag.BuyerDataList
+
+                                IPagedList<Notes_MarketPlace.Db.Downloads> Dobj = ViewBag.BuyerDataList;
+
+                                // UserProfile data ViewBag.UserProfileDataList
+                                List<Notes_MarketPlace.Db.UserProfile> UPobj = ViewBag.UserProfileDataList;
+
+                            }
+
+                            @foreach (var Data in Dobj)
+                            {
+
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td>@Data.NoteTitle</td>
+                                    <td>@Data.NoteCategory</td>
+
+                                    @foreach (var UP in UPobj)
+                                    {
+                                        if (Data.Downloader == UP.UserID)
+                                        {
+
+                                            <td scope="row">@UP.SecondaryEmailAddress</td>
+                                            <td>@UP.Phonenumber</td>
+
+                                        }
+
+                                    }
+
+                                    @if (Data.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+
+                                    <td>$@Data.PurchasedPrice</td>
+                                    <td>@Data.AttachmentDownloadedDate</td>
+                                    <td class="icon_align">
+
+                                        <a href="@Url.Action("NoteDetails", "User", new { id = Data.NoteID}, null)" style="background-color:transparent; border:none;">
+                                            <img src="~/Content/Front_Content/images/dashboard/eye.png">
+                                        </a>
+                                        @*<img src="~/Content/Front_Content/images/dashboard/eye.png">*@
+                                    </td>
+
+                                    @if (Data.IsPaid == true)
+                                    {
+                                        if (Data.IsSellerHasAllowedDownload == true)
+                                        {
+                                            <td>
+                                                <i class="fa fa-check-circle" style="color:green;" aria-hidden="true"></i>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <div class="dropdown show">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                                    </a>
+
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        @Html.ActionLink("Allow Download ", "AllowDownload", new { id = Data.ID })
+                                                        @*<a class="dropdown-item" href="#">Allow Download </a>*@
+                                                    </div>
+                                                </div>
+                                            </td>
+
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <i class="fa fa-check-circle" style="color:green;" aria-hidden="true"></i>
+                                        </td>
+                                    }
+
+
+
+                                </tr>
+
+
+                            }
+
+
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Dobj, ByuerPageIndex => Url.Action("BuyerRequests", "User", new { ByuerPageIndex, BuyerDATA = Request.QueryString["BuyerDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+</section>
+
+<!--===========End Buyer Req part===================--->

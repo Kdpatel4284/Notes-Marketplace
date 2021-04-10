@@ -1,0 +1,520 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Notes Details</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Note_Details.css">
+
+}
+
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+@if (ViewBag.msgdisplay != null)
+{
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: cadetblue;
+            color: white;
+                       
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+
+
+    </style>
+   
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <center>
+            <h5  style="color: #6255a5; font-size:30px;" class="modal-title" id="exampleModalLabel">
+                Thank You for purchasing!
+            </h5>
+
+
+            <h5 style="font-size:20px;">Dear Sir/Madam,</h5>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br />
+                Et ipsam suscipit accusantium tempora minus eius cum aperiam<br>
+                vitae perferendis consequatur? Ad quasi eveniet quo sed possimus<br> 
+                molestias nulla, cumque id?<br><br>
+
+                In case,you have urgency,<br>
+                please contact us on +91953773259
+
+                <br><br>
+                Once he recives the payment and acknowledge us - selected<br>
+                notes you can see over my download tab for downlaod<br><br>
+                Have a good day.
+            </p>
+        </center>
+    </div>
+
+    @*<script type="text/javascript" language="javascript">
+        Func();
+
+    </script>*@
+
+}
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+
+</div>
+@*ViewBag.notesdata = MyNotesData;
+    ViewBag.reviewdata = ReviewData;
+       ViewBag.Country = Country;
+         ViewBag.Category = category;
+*@
+@*@foreach (var Notes in ViewBag.notesdata)
+    {
+        String Dp = Notes.DisplayPicture;
+        String title = Notes.Title;
+        String dis = Notes.Description;
+        String University = Notes.UniversityName;
+        String Course = Notes.Course;
+        String Code = Notes.CourseCode;
+        String Prof = Notes.Professor;
+        int page = Notes.NumberofPages;
+        String preview = Notes.NotesPreview;
+        int price = Notes.SellingPrice;
+
+    }*@
+
+
+@*@foreach (var Notes in ViewBag.reviewdata)
+    {
+
+        int rating = Notes.AverageRating;
+        int report = Notes.TotalReport;
+
+    }*@
+
+
+<!-- basic profile detail section -->
+<div class=" section_heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <h2>Note Details </h2>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+
+    Notes_MarketPlace.Db.SellerNotes obj = ViewBag.NotesData;
+    Notes_MarketPlace.Db.Notes_Review_Rating myreview = ViewBag.reviewdata;
+    if (myreview == null)
+    {
+        myreview = new Notes_MarketPlace.Db.Notes_Review_Rating()
+        {
+            AverageRating = 0,
+            TotalReport = 0,
+
+        };
+
+
+    }
+}
+
+
+<!-- Note Details section -->
+<div id="section_basicform">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6 content_text_dtls" style="margin-left:-140px; margin-right:140px;">
+
+                <div>
+                    <!--Notes dp path -->
+                    <img src="@obj.DisplayPicture" style="height:250px; width:160px; margin-right:30px; border:1px solid" />
+                </div>
+
+                <div class="my_text_part">
+                    <!--Notes Title-->
+                    <h3>@obj.Title</h3>
+                    <!--Notes category-->
+                    <p>@obj.Category</p>
+                    <!--Notes Description-->
+                    <p>@obj.Description</p>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("RequestForDownload", "User", FormMethod.Get))
+                        {
+                            <input type="hidden" name="noteid" value="@obj.ID" />
+                            <button class="my_button_down">Download/$@obj.SellingPrice</button>
+                            <h4 style="color:green; font-size:18px;">@ViewBag.msgdisplay</h4>
+                        }
+
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("Login", "User", FormMethod.Get))
+                        {
+                            <button class="my_button_down">Download/$@obj.SellingPrice</button>
+                        }
+
+
+                    }
+
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <!-- 1st row University -->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Institution:</span>
+                        <span id="right_cnt">@obj.UniversityName</span>
+                    </div>
+                </div>
+
+                <!-- 2st row-->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Country:</span>
+                        <span id="right_cnt">@obj.Country</span>
+                    </div>
+                </div>
+
+                <!-- 3st row-->
+                <div class="row">
+
+
+                    <div class="book_information">
+                        <span id="left_cnt">Course Name:</span>
+                        <span id="right_cnt"> @obj.Course</span>
+                    </div>
+                </div>
+
+                <!-- 4st row-->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Course Code:</span>
+                        <span id="right_cnt">@obj.CourseCode</span>
+                    </div>
+                </div>
+
+                <!-- 5st row-->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Professor:</span>
+                        <span id="right_cnt">@obj.Professor</span>
+                    </div>
+                </div>
+
+                <!-- 6st row-->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Number Of Pages:</span>
+                        <span id="right_cnt">@obj.NumberofPages</span>
+                    </div>
+                </div>
+                <!-- 7 row-->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Approved date</span>
+                        <span id="right_cnt">November 25 2020</span>
+                    </div>
+                </div>
+
+
+                <!-- 8st row-->
+                <div class="row">
+
+                    <div class="book_information">
+                        <span id="left_cnt">Rating:</span>
+                        <span id="right_cnt">
+                            <!-- rating-->
+                            <div>
+                                <div class="rate">
+
+                                    @switch (myreview.AverageRating)
+                                    {
+                                        case 0:
+
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            break;
+
+                                        case 1:
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            break;
+
+                                        case 2:
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            break;
+                                        case 3:
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            break;
+                                        case 4:
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                            break;
+
+                                        case 5:
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -10px; font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                            break;
+                                    }
+
+
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 9 row-->
+                <div class="row">
+
+                    <div class="book_information">
+
+                        <span class="my_red_text">@myreview.TotalReport Users marked this note as inappropriate</span>
+                        <span id="right_cnt"></span>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--==================================================================--->
+<hr>
+<!--==================================================================--->
+<!--=========Note Preview========--->
+<!-- Section -->
+<section id="">
+    <!-- heading section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <h2>Note Preview </h2>
+                </div>
+                <div class="col-sm-6">
+
+                    <h2>Customer Reviews </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  Container-->
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <!-- responsive iframe -->
+                <!-- ============== -->
+
+                <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go <set->    </set->padding-cicis-menu-to-go set-border-cicis-menu-to-go <set-box-shadow-cicis-> </set-box-shadow-cicis->menu-to-go center-block-horiz">
+                    <div class="responsive-wrapper
+                                 responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                        <iframe src="@obj.NotesPreview">
+                            <p style="font-size: 110%;">
+                                <em>
+                                    <strong>ERROR: </strong>
+                                    An &#105;frame should be displayed here but your browser version does not support &#105;frames.
+                                </em> Please update your browser to its most recent version and try again, or access the file <a href="http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf">with this link.</a>
+                            </p>
+                        </iframe>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-6">
+
+
+                <div class="my_box_cr" style="overflow:scroll">
+
+
+
+                    @foreach (var RR in ViewBag.UserReview)
+                    {
+                        <!-- 1st box -->
+                        <div class="review_box" style="margin-left:-400px;">
+
+                            <div class="img_rv">
+
+                                <img src="~/Content/Front_Content/images/User-Profile/profile.jpg">
+
+                            </div>
+
+                            <div class="customer_detail">
+
+                                @foreach (var UU in ViewBag.User)
+                                {
+
+                                    if (RR.ReviewedByID == UU.ID)
+                                    {
+                                        <h3>@UU.FirstName @UU.LastName</h3>
+                                    }
+                                }
+
+                                <!-- rating-->
+                                <div>
+
+                                    <div class="rate">
+                                        @{
+
+                                            int id = Convert.ToInt32(RR.Ratings);
+                                        }
+                                        @switch (id)
+                                        {
+                                            case 0:
+
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px; margin-left: -20px; font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                break;
+
+                                            case 1:
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -20px; font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                break;
+
+                                            case 2:
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -20px; font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                break;
+                                            case 3:
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -20px; font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                break;
+                                            case 4:
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -20px; font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:gray; margin-right: -30px;font-size: 18px;"></span>
+                                                break;
+
+                                            case 5:
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px; margin-left: -20px; font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                <span class="fa fa-star" style="color:orange; margin-right: -30px;font-size: 18px;"></span>
+                                                break;
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                                <br><br>
+
+                                <div class="text_cnt">
+
+                                    <p>@RR.Comments</p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!--Conatin Detsials-->
+                        </div>
+                        <hr>
+                        <!-- end 1st box -->
+                        <!-- end of 1st review -->
+
+
+                    }
+
+
+
+                </div>
+                <!-- my box -->
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- End Container-->
+
+
+</section>
+
+<!--  END Section -->

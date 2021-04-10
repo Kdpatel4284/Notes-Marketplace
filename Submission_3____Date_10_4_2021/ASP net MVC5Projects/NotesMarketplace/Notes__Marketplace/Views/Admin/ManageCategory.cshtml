@@ -1,0 +1,194 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Manage Category </title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@{
+    IPagedList<Notes_MarketPlace.Db.NoteCategories> Model = ViewBag.Categorylist;
+    //IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+}
+
+
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+<center><h4 style="color:green; font-size:18px;">@ViewBag.msg</h4></center>
+<!--=============================================================================================-->
+<!--=========== Manage Category part ===================--->
+
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+        <div class="row" id="row_1">
+
+            <div class="col-sm-12">
+                <div class="deash_title_btn">
+                    <h2> Manage Category</h2>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of row -->
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <div>
+                        @using (Html.BeginForm("AddCategory", "Admin", FormMethod.Get))
+                        {
+
+                            <button id="my_addcategory_btn">ADD CATEGORY</button>
+                        }
+                    </div>
+
+                    <!-- Search form  ManageCategory(int? categoryindex, String categoryDATA)-->
+                    <div id="search_btn_drop_aglin">
+                        <div id="serach_btn">
+                            @using (Html.BeginForm("ManageCategory", "Admin", FormMethod.Get))
+                            {
+
+                                <input name="categoryDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button type="submit" id="add_note_btn_search">SEARCH</button>
+                            }
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">DESCRIPTION</th>
+                                <th scope="col">DATE ADDED</th>
+                                <th scope="col">ADDED BY</th>
+                                <th scope="col">ACTIVE</th>
+                                <th scope="col">ACTTION</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in Model)
+                            {
+
+                                <tr>
+
+                                    <td>@X.Name</td>
+                                    <td>@X.Description</td>
+
+                                    <td>@X.CreatedDate</td>
+                                    <td>Super Admin</td>
+                                    @if (X.IsActive == true)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+
+                                            <a href="@Url.Action("AddCategory", "Admin", new { id = X.ID }, null)" style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Admin/images/dashboard/pencil%20(1).png">
+                                            </a>
+                                            <a href="@Url.Action("DeactiveCategory", "Admin", new { id = X.ID }, null)" style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Admin/images/dashboard/delete%20(1).png">
+                                            </a>
+
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+
+
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Model, categoryindex => Url.Action("ManageCategory", "Admin", new { categoryindex, categoryDATA = Request.QueryString["categoryDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+
+</section>
+<!--===========End of  Manage Category part===================--->

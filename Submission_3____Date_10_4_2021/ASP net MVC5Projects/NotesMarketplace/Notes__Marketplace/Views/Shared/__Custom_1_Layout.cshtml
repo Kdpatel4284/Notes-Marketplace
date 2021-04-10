@@ -1,0 +1,224 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    <!-- Title -->
+    @RenderSection("title", required: true)
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS  css/bootstrap/bootstrap.min.css -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/bootstrap/bootstrap.min.css">
+    <!-- Responsive CSS css/responsive.css -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/responsive.css">
+
+
+    <!-- Custome CSS   css/other/search_notes.css-->
+    @RenderSection("cssfile", required: true)
+
+
+
+    <!-- How To Use
+    atherat{
+        Layout = "~/Views/Shared/__MyCustom_layout.cshtml";}
+    atherat section cssfile{}-->
+
+    @RenderSection("javascript", required: false)
+
+
+    @{
+
+
+
+    }
+
+
+</head>
+<body>
+
+    
+    <!-- section -->
+    <section id="">
+        <!-- header  section -->
+        <!-- Header -->
+        <header>
+            <nav class="navbar navbar-fixed-top white-nav-top">
+                <div class="container-fluid">
+                    <div class="site-nav-wrapper">
+                        <div class="navbar-header">
+                            <!-- Mobile Menu Open Button -->
+                            <span id="mobile-nav-open-btn">&#9776;</span>
+                            <!-- Logo -->
+                            <a class="navbar-brand smooth-scroll h-logo" href="/User/Home">
+                                <img src="Content/Front_Content/images/pre-login/top-logo.png">
+                            </a>
+                        </div>
+                        <!-- Main menu -->
+                        <div class="container">
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav pull-right">
+                                    <ul class="nav navbar-nav pull-right sticky my_profile__size">
+                                        <!--Html.ActionLink("some text", "actionName", "controllerName")-->
+                                        <li>@Html.ActionLink("Search Notes", "SearchNotes", "User")</li>
+                                        <li>@Html.ActionLink("Sell Your Notes", "Dashboard", "User")</li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li>@Html.ActionLink("Buyer Request", "BuyerRequests", "User")</li>
+                                        }
+                                        <li>@Html.ActionLink("FAQ", "FAQ", "User")</li>
+                                        <li>@Html.ActionLink("Contact Us", "ContactUS", "User")</li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li>
+                                                <!--Html.ActionLink("some text", "actionName", "controllerName")-->
+                                                <!--<img class="my_profile__size " src="images/User-Profile/profile.jpg" alt="author" class="img-circle">-->
+                                                <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                        @if (ViewBag.UserProfileData != null)
+                                                        {
+                                                            <img src="@ViewBag.UserProfileData" width="42" height="42" style="margin:5px; border-radius:20px;" />
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <img src="~/Content/Front_Content/images/User-Profile/profile.jpg" width="42" height="42" style="margin:5px; border-radius:20px;" />
+
+                                                        }
+
+
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        @Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("My Downloads", "MyDownload", "User", new { @class = "dropdown-item" })
+                                                       
+                                                        @Html.ActionLink("My Sold Notes", "MySoldNotes", "User", new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("My Rejected Notes", "MyRejectedNotes", "User", new { @class = "dropdown-item" })
+                                                       
+                                                        @Html.ActionLink("Change Password", "ChangePassword", "User", new { @class = "dropdown-item" })
+                                                        @Html.ActionLink("LOGOUT", "Logout", "User", new { @class = "dropdown-item a-logout" })
+                                                    </div>
+                                                </div>
+
+                                            </li>
+
+
+
+                                        }
+                                        <li>
+                                            <!---using(Html.BeginForm("actionName", "controllerName"))-->
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+
+                                                using (Html.BeginForm("Logout", "User", FormMethod.Get))
+                                                {
+                                                    <button type="submit" class="btn btn-primary  btn-block  text-center navbar-btn sticky-btn">
+                                                        Logout
+                                                    </button>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                using (Html.BeginForm("Login", "User", FormMethod.Get))
+                                                {
+                                                    <button type="submit" class="btn btn-primary btn-lg btn-block  text-center navbar-btn sticky-btn">
+                                                        Login
+                                                    </button>
+                                                }
+
+                                            }
+                                        </li>
+
+                                    </ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <!--<div id="mobile-nav">-->
+                        <!-- Mobile Menu Open Button -->
+                        <!--<span id="mobile-nav-close-btn">&times;</span>
+                            <div id="mobile-nav-content">
+                                <ul class="nav">
+                                    <li><a class="smooth-scroll" href="../front/search-notes.html">Search Notes</a></li>
+                                    <li><a class="smooth-scroll" href="#">Sell Your Notes</a></li>
+                                    <li><a class="smooth-scroll" href="#">FAQ</a></li>
+                                    <li><a class="smooth-scroll" href="../front/contact-us.html">Contact Us</a></li>
+                                    <li>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-center">
+                                            Logout
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Header Ends -->
+        <!-- end of header  section -->
+
+
+
+
+
+
+        @RenderBody()
+
+
+
+    </section>
+    <!-- footer  section -->
+    <div id="section_footer">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <p> Copyright &copy; TatvaSoft All rights reserved.</p>
+                </div>
+
+                <div class="col-sm-8">
+
+                    <p id="footer_icon">
+                        <!-- Add icon library -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                        <!-- Add font awesome icons -->
+                        <a href="#" class="fa fa-facebook"></a>
+
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-linkedin"></a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of footer-->
+    <!-- JQuery js/jquery.js-->
+    <script src="~/Content/Front_Content/js/jquery.js"></script>
+
+    <!-- Bootstrap JS  js/bootstrap/bootstrap.min.js-->
+    <script src="~/Content/Front_Content/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS   js/script.js-->
+    <script src="~/Content/Front_Content/js/script.js"></script>
+</body>
+
+</html>

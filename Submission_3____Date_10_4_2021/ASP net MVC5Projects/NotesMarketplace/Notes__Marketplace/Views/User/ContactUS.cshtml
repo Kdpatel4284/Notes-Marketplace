@@ -1,0 +1,118 @@
+﻿@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>Contact Us</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Contact_us.css">
+
+}
+
+<!-- Contact US  section -->
+<div id="second_section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-12 my_main_heading">
+
+                <h2>
+                    <center>Contact Us</center>
+                </h2>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+<!-- Contact us   section -->
+
+
+<form method="post">
+    <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Get in Touch </h2>
+                    <p>Let us know how to get back to you</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <!-- full name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Full Name *</label>
+                        <input name="FullName" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your first Name">
+                    </div>
+
+
+                    <!-- Email-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Email Address *</label>
+                        <input name="EmailID" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                    </div>
+
+                    <!-- subject-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Subject *</label>
+                        <input name="Subject" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                    </div>
+
+                </div>
+                <!--========= right side ===========-->
+                <div class="col-sm-6">
+
+
+                    <!--  upload  notes name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Comments / Questions *</label>
+                        <textarea  name="Comment" class="form-control" id="exampleFormControlTextarea1" rows="8.7"></textarea>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end of basic profile detail section -->
+    <!--==================================================================--->
+    <div id="section_clgform">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <input type="submit" value="SUBMIT" style=" background-color: #6255a5; width: 150px; height: 35px; border-radius: 5px; color: white; font-size: 18px; margin-top: 15px; margin-bottom: 10px;" />
+                    <!--   <button class="my_button_submit">SUBMIT</button>-->
+
+                </div>
+            </div>
+            <h5 style="color:green; font-size:18px;"> @ViewBag.msg</h5>
+
+        </div>
+    </div>
+    <!-- end of sellling  section -->
+</form>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                                                                                                                  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

@@ -1,0 +1,190 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Members</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@{
+    //IPaged
+    IPagedList<Notes_MarketPlace.Db.MemberDetailsData> Model = ViewBag.MemberList;
+    //IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+}
+
+
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+<center><h4 style="color:orange; font-size:18px;">@ViewBag.Dactiv</h4></center>
+<!--==================================================================================================================================================--->
+<!--===========   Members part ===================--->
+
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+
+        <br><br>
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <div>
+                        <h2 id="members_h2">Members</h2>
+                    </div>
+
+                    <!-- Search form  MembersPage(int? memberindex, String memberDATA)-->
+                    <div id="search_btn_drop_aglin_me">
+                        <div id="serach_btn">
+                            @using (Html.BeginForm("MembersPage", "Admin", FormMethod.Get))
+                            {
+
+                                <input name="memberDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button type="submit" id="add_note_btn_search">SEARCH</button>
+                            }
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">FIRST NAME</th>
+                                <th scope="col">LAST NAME</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">JOINING DATE</th>
+                                <th scope="col">UNDER REVIEW <br>NOTES</th>
+                                <th scope="col">PUBLISHED <br>NOTES</th>
+                                <th scope="col">DOWNLOADED<br> NOTES</th>
+                                <th scope="col">TOTAL <br>EXPENSES</th>
+                                <th scope="col">TOTAL<br> EARNING</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in Model)
+                            {
+
+                                <tr>
+
+                                    <td>@X.FirstName</td>
+                                    <td>@X.LastName</td>
+                                    <td>@X.Email</td>
+                                    <td>@X.JoiningDate</td>
+                                    <td>@X.TotalNotesUnderReview</td>
+                                    <td>@X.TotalPublishedNotes</td>
+                                    <td>@X.TotalDownloadedNotes</td>
+                                    <td>$@X.TotalExpense</td>
+                                    <td>$@X.TotalEarning</td>
+
+                                    <td class="icon_align">
+
+                                        <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                @*name="noteid" value="@obj.ID"*@
+                                                @*<a class="dropdown-item" href="#">Download Notes</a>*@
+
+                                                @*@Html.ActionLink("Approve", "ApproveNotesFromRejectPortal", "Admin", new { noteid = X.ID, Seller = X.SellerID }, null)*@
+
+                                                @Html.ActionLink("Deactivate", "DeactiveUser", "Admin", new { MyUserID = X.UserID }, null)
+
+                                                @Html.ActionLink("View More Details", "AboutMember", "Admin", new { MyUserID = X.UserID }, null)
+
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+
+
+                            }
+
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Model, memberindex => Url.Action("MembersPage", "Admin", new { memberindex, memberDATA = Request.QueryString["memberDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+</section>
+<!--===========End Members part===================--->

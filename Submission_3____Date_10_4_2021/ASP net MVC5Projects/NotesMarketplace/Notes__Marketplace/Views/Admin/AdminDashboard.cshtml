@@ -1,0 +1,345 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title> Admin Dashboard</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@{
+
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.NoteList;
+    List<Notes_MarketPlace.Db.Users_New> UserData = ViewBag.UserData;
+    List<Notes_MarketPlace.Db.NoteCategories> NC = ViewBag.NotesCategories;
+    List<Notes_MarketPlace.Db.NumberofDownloads> DownloadData = ViewBag.DownloadData;
+
+}
+
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+
+
+
+
+
+<!--===========  Dashboard part   ===================--->
+
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+        <div class="row" id="row_1">
+
+            <div class="col-sm-12">
+                <div class="deash_title_btn">
+                    <h2> Dashboard</h2>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of row -->
+        <!-- my custom box row -->
+
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-4">
+                <div class="box_align">
+
+                    <div class="my_custom_box_2">
+
+                        <div class="text_center">
+                            <h3>@ViewBag.numberofnotesinreview</h3>
+                            <p>Number of Notes in Review for Publish</p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- end of column 01-->
+            <!-- column 02-->
+            <div class="col-sm-4">
+                <div class="box_align">
+
+                    <div class="my_custom_box_2">
+
+                        <div class="text_center">
+                            <h3>@ViewBag.numberofdownloadednotes</h3>
+                            <p>Number of New Notes Download <br>(last 7 Days)</p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- end of column 02-->
+            <!-- column 03-->
+            <div class="col-sm-4">
+                <div class="box_align">
+
+                    <div class="my_custom_box_2">
+
+                        <div class="text_center">
+                            <h3>@ViewBag.numberofregisterd</h3>
+                            <p>Number of New Notes Registrations <br>(Last 7 days)</p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- end of column 01-->
+
+
+
+        </div>
+        <center><h4 style="color:orange; font-size:18px;">@ViewBag.unpublishmsg</h4></center>
+        <!-- end of row -->
+        <br><br>
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <div>
+                        <h2>Published Notes</h2>
+                    </div>
+
+                    <!-- Search form -->
+                    <div id="search_btn_drop_aglin">
+
+                        <div id="serach_btn">
+                            @using (Html.BeginForm("AdminDashboard", "Admin", FormMethod.Get))
+                            {
+
+                                <input name="AdminDashDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button type="submit" id="add_note_btn_search">SEARCH</button>
+                            }
+
+                        </div>
+
+
+                        @using (Html.BeginForm("AdminDashboard", "Admin", FormMethod.Get))
+                        {
+                            <div class="drop_secton">
+                                @Html.DropDownList("MonthID", new SelectList(ViewBag.MonthList, "MonthID", "Name"), new { @class = "form-control" })
+                                <button type="submit" id="add_note_btn_search" style="width:70px;">GO</button>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">ATTACHMENT SIZE</th>
+                                <th scope="col">SELL TYPE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">PUBLISHER</th>
+                                <th scope="col">PUBLISHED DATE</th>
+                                <th scope="col">DOWNLOADS</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var X in Model)
+                            {
+
+                                <tr>
+
+                                    <td>@Html.ActionLink(X.Title, "AdminNoteDetails", "Admin", new { id = X.ID }, null)</td>
+
+
+                                    @foreach (var Cobj in NC)
+                                    {
+                                        if (X.Category == Cobj.ID)
+                                        {
+                                            <td>@Cobj.Name</td>
+
+                                        }
+
+                                    }
+
+
+
+                                    <td>@X.Size KB</td>
+                                    @if (X.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+
+
+                                    <td>$@X.SellingPrice</td>
+
+                                    @foreach (var uobj in UserData)
+                                    {
+                                        if (X.SellerID == uobj.ID)
+                                        {
+                                            <td>@uobj.FirstName  @uobj.LastName</td>
+
+                                        }
+
+                                    }
+
+                                    <td>@X.CreatedDate</td>
+
+
+                                    @foreach (var Dobj in DownloadData)
+                                    {
+
+                                        if (X.ID == Dobj.NoteID)
+                                        {
+                                            <td>@Dobj.Downloads</td>
+
+                                        }
+
+
+                                    }
+
+
+
+
+                                    <td>
+
+                                        <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                @*name="noteid" value="@obj.ID"*@
+                                                @*<a class="dropdown-item" href="#">Download Notes</a>*@
+
+                                                @Html.ActionLink("Download Notes", "RequestForDownload", "User", new { noteid = X.ID }, null)
+
+                                                @Html.ActionLink("View More Details", "AdminNoteDetails", "Admin", new { id = X.ID }, null)
+
+                                                @Html.ActionLink("Unpublish", "UnpublishNotes", "Admin", new { noteid = X.ID, Seller = X.SellerID, ntsTitle = X.Title }, null)
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            }
+
+
+
+
+                            @*<tr>
+                                    <td scope="row">2</td>
+                                    <td>Data Science</td>
+                                    <td>Science</td>
+                                    <td>10KB</td>
+                                    <td>Free</td>
+                                    <td>$0</td>
+                                    <td>Pritesh Panchal</td>
+                                    <td>09-10-2020, 10:10 </td>
+                                    <td>10</td>
+
+                                    <td class="icon_align">
+                                        <img src="~/Content/Admin/images/dashboard/more.png">
+
+                                    </td>
+                                </tr>*@
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Model, admindashindex => Url.Action("AdminDashboard", "Admin", new { admindashindex, AdminDashDATA = Request.QueryString["AdminDashDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+
+
+    </div>
+    <!--  end of container -->
+    
+
+    <center><h4 style="color:green; font-size:18px;">@ViewBag.NoData</h4></center>
+
+
+</section>
+
+<!--===========  END OF ADMIN Dashboard part ===================--->

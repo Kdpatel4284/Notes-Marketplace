@@ -1,0 +1,215 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Members</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+@{
+
+    IPagedList<Notes_MarketPlace.Db.SellerNotesReportedIssues> Model = ViewBag.reportList;
+    List<Notes_MarketPlace.Db.Users_New> U = ViewBag.UserData;
+    List<Notes_MarketPlace.Db.NoteCategories> NC = ViewBag.NotesCategories;
+    List<Notes_MarketPlace.Db.SellerNotes> SN = ViewBag.SellerNotes;
+
+
+
+}
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+
+<center><h4 style="color:orange; font-size:18px;">@ViewBag.msg</h4></center>
+<!--=============================================================================================-->
+<!--===========  Spam Report part ===================--->
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+                <div id="bottom_space"></div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <div>
+                        <div class="myheading">
+                            <h2> Spam Reports</h2>
+                        </div>
+                    </div>
+
+                    <!-- Search form -->
+                    <div id="search_btn_drop_aglin">
+                        @*<div id="serach_btn">
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button id="add_note_btn_search">SEARCH</button>
+
+
+                        </div>*@
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">REPORTED BY</th>
+                                <th scope="col">NOTE TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">DATE EDITED</th>
+                                <th scope="col">REMARK</th>
+                                <th scope="col">ACTTION</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in Model)
+                            {
+
+                                <tr>
+
+                                    @foreach (var Uobj in U)
+                                    {
+
+                                        if (X.ReportedBYID == Uobj.ID)
+                                        {
+                                            <td scope="row">@Uobj.FirstName @Uobj.LastName</td>
+                                        }
+
+                                    }
+
+                                    @foreach (var Nobj in SN)
+                                    {
+
+                                        if (X.NoteID == Nobj.ID)
+                                        {
+                                            <td scope="row">@Nobj.Title</td>
+                                            <td scope="row">@Nobj.Category</td>
+                                        }
+
+                                    }
+
+
+
+
+                                    <td>@X.CreatedDate</td>
+                                    <td>@X.Remarks</td>
+                                    <td class="icon_align">
+
+
+                                        <a href="@Url.Action("DeleteRemark","Admin", new { ID = X.ID }, null)" style="background-color:transparent; border:none;">
+                                            <img src="~/Content/Admin/images/dashboard/delete (1).png" style="width:25px; height:25px;">
+                                        </a>
+
+
+                                    </td>
+                                    <td>
+                                        <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                @*name="noteid" value="@obj.ID"*@
+                                                @*<a class="dropdown-item" href="#">Download Notes</a>*@
+
+                                                @*@Html.ActionLink("Download Notes", "RequestForDownload", "User", new { noteid = X.ID }, null)*@
+
+                                                @Html.ActionLink("View More Details", "AdminNoteDetails", "Admin", new { id = X.NoteID }, null)
+
+                                                @*@Html.ActionLink("Unpublish", "UnpublishNotes", "Admin", new { noteid = X.ID, Seller = X.SellerID, ntsTitle = X.Title }, null)*@
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Model, reportindex => Url.Action("ReportsPage", "Admin", new { reportindex }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+
+</section>
+<!--===========End spam Report part===================--->

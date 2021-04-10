@@ -1,0 +1,180 @@
+﻿
+@{
+    Layout = null;
+}
+<!-- Add Model here -->
+@model Notes__Marketplace.Models.UsersModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <h5>@ViewBag.lable</h5>
+    <!--  Title -->
+    <title>Create an account</title>
+
+    <!-- Meta tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font google link -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/bootstrap/bootstrap.min.css">
+
+    <!-- Responsive Tabs CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/responsive-tabs/responsive-tabs.css.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/responsive.css">
+
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/style.css">
+
+</head>
+
+<!--===================================================== -->
+
+<body id="signup_bg_img">
+
+
+    <div id="signup">
+
+        <!-- section-->
+        <div class="container">
+
+            <!-- row-1 -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div id="title_img_signup">
+
+                        <center> <img src="~/Content/Front_Content/images/pre-login/top-logo.png"></center>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- end of row-1 -->
+            <!-- row-2 -->
+            <div class="row ">
+
+                <!--=For Side Space=-->
+                <!-- column 01-->
+                <div class="col-sm-3">
+                </div>
+
+                <!-- column 02-->
+                <div class="col-sm-6">
+                    <div class="bg_signup">
+
+                        <div id="my_form_head" class="head_margin">
+                            <center>
+
+                                <h3>Create an Account</h3>
+                                <p>Enter your Details to signup</p>
+
+                                <span>
+                                    <p>@ViewBag.msg</p>
+                                </span>
+                                
+                            </center>
+                        </div>
+
+
+
+                        <form id="form_signup" method="post">
+
+                            <!-- First Name -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="lable_name">First Name *</label>
+                                <!--  <input name="firstname" type="text" class="form-control my_input_height" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">   -->
+                                @Html.TextBox("FirstName", "", new { @class = "form-control my_input_height", @id = "exampleInputEmail1", @placeholder = "Enter first name" })
+                            <span class="red_text">  @Html.ValidationMessage("FirstName")</span>
+</div>
+
+                            <!-- Last Name -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="lable_name">Last Name *</label>
+                                <!--  <input name="lastname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
+    -->
+                                @Html.TextBox("LastName", "", new { @class = "form-control my_input_height", @id = "exampleInputEmail1", @placeholder = "Enter last name" })
+                                <span class="red_text"> @Html.ValidationMessage("LastName")</span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="lable_name">Email *</label>
+                                <!-- <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    -->
+                                @Html.TextBox("EmailID", null, new { @class = "form-control frmField", placeholder = "Email" })
+                                @Html.ValidationMessage("EmailID", "", new { @class = "red_text" })
+                                <p class="text-danger">@ViewBag.redmsg</p>
+                            
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1" class="lable_name">Password</label>
+                                <br />
+                                <!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                        <img class="eye_icn" src="~/Content/Front_Content/images/pre-login/eye.png">  -->
+
+                                @Html.Password("password", null, new { @class = "form-control frmField", placeholder = "Password" })
+                                @Html.ValidationMessage("Password","", new { @class= "red_text" })
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1" class="lable_name"> Confirm Password</label>
+                                <!--  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                                             <img class="eye_icn" src="~/Content/Front_Content/images/pre-login/eye.png"> -->
+                                @Html.Password("ConfirmPassword", null, new { @class = "form-control frmField", placeholder = "Password" })
+                                @ViewBag.ConfirmPassMsg
+                            </div>
+
+
+                            <!-- Submit Button-->
+                            <button type="submit" class="btn_submit">SIGN UP</button>
+
+                            <div id="bottom_text" class="">
+                                <center>
+                                    <p>
+                                        Already have an account?
+                                        <!-- Link Text, Action Method-->
+                                        @Html.ActionLink("Login", "Index")
+                                    </p>
+                                </center>
+                            </div>
+
+                        </form>
+
+                    </div>
+                <!-- end of column 01-->
+                <!--=For Side Space=-->
+                <div class="col-sm-3">
+
+                </div>
+
+            </div>
+            <!-- end of row -->
+
+        </div>
+        <!-- End section-->
+    </div>
+
+    <!--======================================================-->
+    <!-- JQuery -->
+    <script src="~/Content/Front_Content/js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Content/Front_Content/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Content/Front_Content/js/script.js"></script>
+    <!--======================================================-->
+</body>
+
+
+</html>
+

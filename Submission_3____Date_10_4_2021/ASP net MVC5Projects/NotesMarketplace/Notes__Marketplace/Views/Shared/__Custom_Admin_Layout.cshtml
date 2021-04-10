@@ -1,0 +1,234 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <!-- Important meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+
+    <!-- Title -->
+    @RenderSection("title", required: true)
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS   css/bootstrap/bootstrap.min.css-->
+    <link rel="stylesheet" href="~/Content/Admin/css/bootstrap/bootstrap.min.css">
+
+    <!-- Custome CSS -->
+    <!--<link rel="stylesheet" href="~/Content/Admin/css/other/Dashboard%20.css">-->
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/responsive.css">
+
+
+    <!-- Custome CSS   css/other/search_notes.css-->
+    @RenderSection("cssfile", required: true)
+
+
+
+    <!-- How To Use
+    atherat{
+        Layout = "~/Views/Shared/__MyCustom_layout.cshtml";}
+    atherat section cssfile{}-->
+
+    @RenderSection("javascript", required: false)
+
+
+    @{
+
+
+
+    }
+
+
+</head>
+<body>
+
+
+    <!-- section -->
+    <section id="">
+        <!-- header  section -->
+        <!-- Header -->
+        <header>
+            <nav class="navbar navbar-fixed-top white-nav-top">
+                <div class="container-fluid">
+                    <div class="site-nav-wrapper">
+                        <div class="navbar-header">
+                            <!-- Mobile Menu Open Button -->
+                            <span id="mobile-nav-open-btn">&#9776;</span>
+                            <!-- Logo -->
+                            <a class="navbar-brand smooth-scroll h-logo" href="/Admin/AdminDashboard">
+                                <img src="Content/Front_Content/images/pre-login/top-logo.png">
+                            </a>
+                        </div>
+                        <!-- Main menu -->
+                        <div class="container">
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav pull-right">
+                                    <ul class="nav navbar-nav pull-right sticky my_profile__size">
+                                        <!--Html.ActionLink("some text", "actionName", "controllerName")-->
+                                        <li>@Html.ActionLink("Dashboard", "AdminDashboard", "Admin")</li>
+                                        <li>
+                                            <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container" style="margin-top: 10px">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; margin:5px;">
+                                                    <p style="background-color: transparent;font-family: 'Open Sans'; color: #FEB729; font-weight:600; font-size :16px; ">Notes</p>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    @Html.ActionLink("Notes Under Review", "NotesUnderReview", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Published Notes", "PublishedNotes", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Downloaded Notes", "DownloadedNotes", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Rejected Notes", "RejectedNotes", "Admin", new { @class = "dropdown-item" })
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>@Html.ActionLink("Members", "MembersPage", "Admin")</li>
+                                        <li>@Html.ActionLink("Reports", "ReportsPage", "Admin")</li>
+
+
+                                        <li>
+                                            <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container" style="margin-top: 10px">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent; margin:5px;">
+                                                    <p style="background-color: transparent;font-family: 'Open Sans'; color: #FEB729; font-weight:600; font-size :16px; ">Setting</p>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+
+                                                    @if (ViewBag.Roleid == 2)
+                                                    {
+                                                        @*@Html.ActionLink("System Configuration", "ManageSystemConfigurations", "Admin", new { @class = "dropdown-item" })*@
+                                                        @Html.ActionLink("Manage Administrator", "ManageAdministrator", "Admin", new { @class = "dropdown-item" })
+                                                    }
+                                                    @Html.ActionLink("Manage Category", "ManageCategory", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Manage Type", "ManageType", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Manage Countries", "ManageCountries", "Admin", new { @class = "dropdown-item" })
+
+                                                </div>
+                                            </div>
+                                        
+                                       
+                                        </li>
+
+                                        <li>
+                                            <!--Html.ActionLink("some text", "actionName", "controllerName")-->
+                                            <!--<img class="my_profile__size " src="images/User-Profile/profile.jpg" alt="author" class="img-circle">-->
+                                            <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                    @if (ViewBag.UserProfileData != null)
+                                                    {
+                                                        <img src="@ViewBag.UserProfileData" width="42" height="42" style="margin:5px; border-radius:20px;" />
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <img src="~/Content/Front_Content/images/User-Profile/profile.jpg" width="42" height="42" style="margin:5px; border-radius:20px;" />
+
+                                                    }
+
+
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    @Html.ActionLink("Update Profile", "AdminProfile", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Change Password", "AdminChangePassword", "Admin", new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("LOGOUT", "Logout", "Admin", new { @class = "dropdown-item a-logout" })
+                                                </div>
+                                            </div>
+
+                                        </li>
+
+
+
+
+                                        <li>
+                                            <!---using(Html.BeginForm("actionName", "controllerName"))-->
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+
+                                                using (Html.BeginForm("Logout", "Admin", FormMethod.Get))
+                                                {
+                                                    <button type="submit" class="btn btn-primary  btn-block  text-center navbar-btn sticky-btn">
+                                                        Logout
+                                                    </button>
+                                                }
+                                            }
+
+                                        </li>
+
+                                    </ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <!--<div id="mobile-nav">-->
+                        <!-- Mobile Menu Open Button -->
+                        <!--<span id="mobile-nav-close-btn">&times;</span>
+                            <div id="mobile-nav-content">
+                                <ul class="nav">
+                                    <li><a class="smooth-scroll" href="../front/search-notes.html">Search Notes</a></li>
+                                    <li><a class="smooth-scroll" href="#">Sell Your Notes</a></li>
+                                    <li><a class="smooth-scroll" href="#">FAQ</a></li>
+                                    <li><a class="smooth-scroll" href="../front/contact-us.html">Contact Us</a></li>
+                                    <li>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-center">
+                                            Logout
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Header Ends -->
+        <!-- end of header  section -->
+
+
+
+
+
+
+        @RenderBody()
+
+
+
+    </section>
+    <!-- footer  section -->
+    <div id="section_footer">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" id="footer_admin">
+                    <p>Version : 1.1.24</p>
+                    <p> Copyright &copy; TatvaSoft All rights reserved.</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- end of footer-->
+    <!--  End of user section -->
+    <!-- JQuery -->
+    <script src="~/Content/Admin/js/jquery.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Content/Admin/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Content/Admin/js/Admin.js"></script>
+</body>
+
+</html>

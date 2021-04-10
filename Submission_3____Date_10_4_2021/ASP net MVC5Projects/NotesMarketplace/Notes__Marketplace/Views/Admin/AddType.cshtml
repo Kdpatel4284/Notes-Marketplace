@@ -1,0 +1,97 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>add Type</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/userprofile_style.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+
+
+
+@using (Html.BeginForm("AddType", "Admin", FormMethod.Post))
+{
+    <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Add Type </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    @if (ViewBag.ID != null)
+                    {
+
+                        <input type="hidden" name="ID" value="@ViewBag.ID" />
+                    }
+
+                    <!-- first name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Type Name *</label>
+                        <input type="text" name="Name" value="@ViewBag.Name" class="form-control" id="exampleFormControlInput1" placeholder="Enter Category Name">
+                    </div>
+
+                    <!--  description name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="my_lable">Description *</label>
+                        <textarea name="Description" placeholder="Enter your description" class="form-control" id="exampleFormControlTextarea1" rows="7">@ViewBag.desc</textarea>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--========= right side ===========-->
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <button type="submit" class="my_button_submit">SUBMIT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end of address detail section -->
+}
+

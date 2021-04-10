@@ -1,0 +1,209 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Manage System Configuration </title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+@{
+
+    IPagedList<Notes_MarketPlace.Db.Users_New> Admin = ViewBag.admin;
+    List<Notes_MarketPlace.Db.UserProfile> UP = ViewBag.usrprofiledata;
+}
+
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+<!--=============================================================================================-->
+<center><h4 style="color:green; font-size:18px;">@ViewBag.adminmsg</h4></center>
+<!--===========  Manage Admin part ===================--->
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+        <div class="row" id="row_1">
+
+            <div class="col-sm-12">
+                <div class="deash_title_btn">
+                    <h2> Manage Administrator</h2>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of row -->
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <div>
+                        @using (Html.BeginForm("AddAdministrator", "Admin", FormMethod.Get))
+                        {
+
+                            <button type="submit" id="my_administrator_btn">ADD ADMINISTRATOR</button>
+                        }
+                    </div>
+
+                    <!-- Search form  ManageAdministrator(int? admindataindex, String adminDATA)  -->
+                    <div id="search_btn_drop_aglin">
+                        <div id="serach_btn">
+                            @using (Html.BeginForm("ManageAdministrator", "Admin", FormMethod.Get))
+                            {
+
+                                <input name="adminDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button type="submit" id="add_note_btn_search">SEARCH</button>
+                            }
+
+                           
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">FIRST NAME</th>
+                                <th scope="col">LAST NAME</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">PHONE NO.</th>
+                                <th scope="col">DATE ADDED</th>
+                                <th scope="col">ACTIVE</th>
+                                <th scope="col">ACTTION</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in Admin)
+                            {
+
+                                <tr>
+
+                                    <td>@X.FirstName</td>
+                                    <td>@X.LastName</td>
+                                    <td>@X.EmailID</td>
+
+                                    @foreach (var O in UP)
+                                    {
+                                        if (X.ID == O.UserID)
+                                        {
+                                            <td>@O.Phonenumber</td>
+
+                                        }
+
+                                    }
+
+
+                                    <td>@X.CreatedDate</td>
+                                    @if (X.IsActive == true)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+
+                                    }
+
+                                    <td class="icon_align">
+
+                                        <div class="dropdown show">
+                                           
+                                            <a href="@Url.Action("AddAdministrator", "Admin", new { id = X.ID }, null)" style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Admin/images/dashboard/pencil%20(1).png">
+                                            </a>
+                                            <a href="@Url.Action("DeActiveAdmin", "Admin", new { id = X.ID }, null)" style="background-color:transparent; border:none;">
+                                                <img src="~/Content/Admin/images/dashboard/delete%20(1).png">
+                                            </a>
+
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(Admin, admindataindex => Url.Action("ManageAdministrator", "Admin", new { admindataindex, adminDATA = Request.QueryString["adminDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+
+    </div>
+    <!--  end of container -->
+</section>
+<!--===========End of Manage Admin part===================--->

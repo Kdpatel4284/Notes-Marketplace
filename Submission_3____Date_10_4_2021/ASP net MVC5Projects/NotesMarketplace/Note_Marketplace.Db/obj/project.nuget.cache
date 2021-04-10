@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nZvnS75Dsswv2xyUYB7gVjqPTuVj775o5VydjZz3fE5Z+VryKL/vOp5/Qe4hs1pVo31RmWnEZ1ZkTQVhbRhGSg==",
+  "success": true,
+  "projectFilePath": "D:\\ASP net MVC5__Projects\\Notes__Marketplace\\Note_Marketplace.Db\\Note_Marketplace.Db.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dell Store\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Dell Store\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

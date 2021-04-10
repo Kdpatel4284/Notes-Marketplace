@@ -1,0 +1,148 @@
+﻿@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>My Rejected Notes</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Dashboard.css">
+
+}
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{ 
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> Sobj = ViewBag.RejectedNotesDataList;
+     List<Notes_MarketPlace.Db.NoteCategories> Cobg = ViewBag.CategoryList;
+}
+<!--===========  My rejected part ===================--->
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <br><br>
+        <!--====================== publish table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table_dwn">
+                    <h2 id="mydown">My Rejected Notes</h2>
+                    @using (Html.BeginForm("MyRejectedNotes", "User", FormMethod.Get))
+                    {
+                        <!-- Search form -->
+                        <div id="my_search_dwn">
+                            <input name="RejectedDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" id="add_note_btn_search">SEARCH</button>
+                        </div>
+
+                    }
+
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                               
+                                <th scope="col">NOTE TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">REMARKS</th>
+                                <th scope="col">CLONE</th>
+
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var Data in Sobj)
+                            {
+
+                            <tr>
+
+                                <td> @Html.ActionLink(@Data.Title, "NoteDetails", "User", new { id = Data.ID }, null)</td>
+
+                                    @foreach (var C in Cobg)
+                                    {
+                                        if (Data.Category == C.ID)
+                                        {
+                                            <td>@C.Name</td>
+                                        }
+
+                                    }
+
+                                <td>@Data.AdminRemarks</td>
+                                <td>Clone</td>
+                                <td>
+                                    <div class="dropdown show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            @*<a class="dropdown-item" href="#">Download Notes</a>*@
+                                            @Html.ActionLink("Download Notes", "RequestForDownload", new { noteid = Data.ID })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+                            }
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>
+                    <center>@Html.PagedListPager(Sobj, RejectedPageIndex => Url.Action("MyRejectedNotes", "User", new { RejectedPageIndex, RejectedDATA = Request.QueryString["RejectedDATA"] }))</center>
+                </center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+</section>
+<!--===========End Rejected Notes part===================--->

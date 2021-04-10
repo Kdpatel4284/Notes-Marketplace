@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Views/Shared/__Custom_1_Layout.cshtml";
+}
+
+@section title{
+    <title>My Sold Notes</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Front_Content/css/other/Dashboard.css">
+
+}
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+
+    IPagedList<Notes_MarketPlace.Db.Downloads> SoldObj = ViewBag.MySoldNoteList;
+    // UserProfile data ViewBag.UserProfileDataList
+    List<Notes_MarketPlace.Db.UserProfile> UPobj = ViewBag.UserProfileDataList;
+ }
+<!--===========  Sold Notes ===================--->
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <br><br>
+        <!--====================== publish table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table_dwn">
+                    <h2 id="mydown">My Sold Notes</h2>
+                    <!-- Search form -->
+                    <div id="my_search_dwn">
+                        @using (Html.BeginForm("MySoldNotes", "User", FormMethod.Get))
+                        {
+
+                            <input name="SoldDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <button type="submit" id="add_note_btn_search">SEARCH</button>
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                
+                                <th scope="col">TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">BUYER</th>
+                                <th scope="col">SELL TYPE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">DOWNLOAD DATE/TIME</th>
+                                <th scope="col">&nbsp;</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in SoldObj)
+                            {
+
+                            <tr>
+
+                                <td>@X.NoteTitle</td>
+                                <td>@X.NoteCategory</td>
+                                @foreach (var U in UPobj)
+                                {
+
+                                    if (X.Downloader == U.UserID)
+                                    {
+                                        <td scope="row">@U.SecondaryEmailAddress</td>
+                                    }
+
+                                }
+
+                                @if (X.IsPaid == true)
+                                {
+                                    <td>Paid</td>
+                                }
+                                else
+                                {
+                                    <td>Free</td>
+                                }
+                                <td>$@X.PurchasedPrice</td>
+                                <td>@X.AttachmentDownloadedDate</td>
+
+                                <td class="icon_align">
+                                    <a href="@Url.Action("NoteDetails", "User", new { id = X.NoteID }, null)" style="background-color:transparent; border:none;">
+                                        <img src="~/Content/Front_Content/images/dashboard/eye.png">
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <div class="dropdown show">
+
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                            @Html.ActionLink("Download Notes", "RequestForDownload", new { noteid = X.NoteID })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
+
+                            }
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>@Html.PagedListPager(SoldObj, SoldPageIndex => Url.Action("MySoldNotes", "User", new { SoldPageIndex, SoldDATA = Request.QueryString["SoldDATA"] }))</center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+
+
+
+
+
+
+
+
+</section>
+<!--===========End of Sold Notes part===================--->

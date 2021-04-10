@@ -1,0 +1,261 @@
+﻿
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>Published Notes</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/AdminDashboard.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+@*@{
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.DashIPNotesData;
+        IPagedList<Notes_MarketPlace.Db.SellerNotes> ModelPublish = ViewBag.DashPublishNotesData;
+
+    }*@
+
+@{
+
+    IPagedList<Notes_MarketPlace.Db.SellerNotes> Model = ViewBag.NoteList;
+    List<Notes_MarketPlace.Db.Users_New> UserData = ViewBag.UserData;
+    List<Notes_MarketPlace.Db.NoteCategories> NC = ViewBag.NotesCategories;
+    List<Notes_MarketPlace.Db.NumberofDownloads> DownloadData = ViewBag.DownloadData;
+}
+
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+<!--==================================================================================================================================================--->
+<!--===========  Publish Part ===================--->
+<center><h4 style="color:orange; font-size:18px;">@ViewBag.unpublishmsg</h4></center>
+<section id="dash">
+
+    <!-- container -->
+    <div class="container">
+        <!-- title and  button row -->
+        <div class="row" id="row_1">
+
+            <div class="col-sm-12">
+                <div class="deash_title_btn">
+                    <h2> Published Notes</h2>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end of row -->
+        <!-- my custom box row -->
+
+        <div>
+            <p>Seller</p>
+        </div>
+        <!--======================table with search btn==========================-->
+        <!-- table title row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="deash_title_btn_table">
+                    <div>
+                        @using (Html.BeginForm("PublishedNotes", "Admin", FormMethod.Get))
+                        {
+                            <div>
+                                @Html.DropDownList("Seller", new SelectList(ViewBag.UserData, "ID", "FirstName"), new { @class = "form-control", @id = "Ultra", @onchange = "this.form.submit()" })
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Search form -->
+                    <div id="search_btn_drop_aglin">
+                        <div id="serach_btn">
+                            @using (Html.BeginForm("PublishedNotes", "Admin", FormMethod.Get))
+                            {
+
+                                <input name="publishedDATA" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                <button type="submit" id="add_note_btn_search">SEARCH</button>
+                            }
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+
+        <br>
+        <!-- Table 01 row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th scope="col"> NOTE TITLE</th>
+                                <th scope="col">CATEGORY</th>
+                                <th scope="col">SELL TYPE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">SELLER</th>
+                                <th></th>
+                                <th scope="col">PUBLISHED DATE</th>
+                                <th scope="col">APPROVED BY</th>
+                                <th scope="col">NUMBER OF DOWNLOADS</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var X in Model)
+                            {
+                                <tr>
+
+                                    <td>@Html.ActionLink(X.Title, "AdminNoteDetails", "Admin", new { id = X.ID }, null)</td>
+
+
+                                    @foreach (var Cobj in NC)
+                                    {
+                                        if (X.Category == Cobj.ID)
+                                        {
+                                            <td>@Cobj.Name</td>
+
+                                        }
+
+                                    }
+
+                                    @if (X.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+
+                                    <td>$@X.SellingPrice</td>
+
+                                    @foreach (var uobj in UserData)
+                                    {
+                                        if (X.SellerID == uobj.ID)
+                                        {
+                                            <td>@uobj.FirstName  @uobj.LastName</td>
+
+                                        }
+
+                                    }
+
+                                    <td>
+                                        <a href="@Url.Action("AboutMember","Admin", new { MyUserID  = X.SellerID }, null)" style="background-color:transparent; border:none;">
+                                            <img src="~/Content/Admin/images/dashboard/eye.png" style="width:25px; height:25px;">
+                                        </a>
+                                    </td>
+
+
+
+
+                                    <td>@X.PublishedDate</td>
+
+                                    <td>Admin</td>
+
+                                    @foreach (var Dobj in DownloadData)
+                                    {
+
+                                        if (X.ID == Dobj.NoteID)
+                                        {
+                                            <td>@Dobj.Downloads</td>
+
+                                        }
+
+
+                                    }
+                                    <td class="icon_align">
+
+                                        <div class="col-md-6  col-sm-6 col-xs-5 smooth-scroll flex-container">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                <img class="icon_more" src="~/Content/Front_Content/images/dashboard/more.png">
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                @*@Html.ActionLink("My Profile", "MyProfile", "User", new { @class = "dropdown-item" })*@
+                                                @*name="noteid" value="@obj.ID"*@
+                                                @*<a class="dropdown-item" href="#">Download Notes</a>*@
+
+                                                @Html.ActionLink("Download Notes", "RequestForDownload", "User", new { noteid = X.ID }, null)
+
+                                                @Html.ActionLink("View More Details", "AdminNoteDetails", "Admin", new { id = X.ID }, null)
+
+                                                @Html.ActionLink("Unpublish", "UnpublishNotes", "Admin", new { noteid = X.ID, Seller = X.SellerID, ntsTitle = X.Title }, null)
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            }
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row -->
+        <!-- row -->
+        <div class="row">
+            <!-- column 01-->
+            <div class="col-sm-12">
+
+                <center>
+                    <center>@Html.PagedListPager(Model, publishednotesindex => Url.Action("PublishedNotes", "Admin", new { publishednotesindex, publishedDATA = Request.QueryString["publishedDATA"] }))</center>
+                </center>
+
+            </div>
+            <!-- end of column 01-->
+        </div>
+        <!-- end of row <-->
+        <!--======================table with search btn + paging==========================-->
+    </div>
+    <!--  end of container -->
+    <center><h4 style="color:green; font-size:18px;">@ViewBag.NoData</h4></center>
+</section>
+<!--===========End Of Publish part===================--->

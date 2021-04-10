@@ -1,0 +1,128 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/__Custom_Admin_Layout.cshtml";
+}
+
+@section title{
+    <title>About Member</title>
+
+}
+@section cssfile{
+
+    <!-- Custome CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/other/userprofile_style.css">
+
+
+}
+
+<!--For Pagination -->
+@*@using PagedList.Mvc;
+    @using PagedList;
+    @model  IPagedList<Notes_MarketPlace.Db.SellerNotes>
+     <center>@Html.PagedListPager(Model, page => Url.Action("SearchNotes", "User", new { page,search=Request.QueryString["search"] }))</center>
+*@
+
+@using PagedList.Mvc;
+@using PagedList;
+@*@model  IPagedList<Notes_MarketPlace.Db.SellerNotes>*@
+
+<!-- Custome CSS -->
+<!--   bg set of n top-nav bar here -->
+<div class="bg__dash_nav">
+
+    <br><br><br><br>
+
+</div>
+<br>
+<br>
+
+<center><p style="color:green;">@ViewBag.MSG</p> </center>
+
+@using (Html.BeginForm("AddAdministrator", "Admin", FormMethod.Post))
+{
+    <!-- basic profile detail section -->
+    <div class="section_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <h2>Add Administrator </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    <div id="section_basicform">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+
+                    @if(ViewBag.Userid!=null)
+                    {
+                      <input type="hidden" value="@ViewBag.Userid" name="UserID" />
+                    }
+                    <!-- first name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">First Name *</label>
+                        <input type="text" name="FirstName" value="@ViewBag.fname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your first Name">
+                        <p class="text-danger">@Html.ValidationMessage("FirstName")</p>
+                    </div>
+
+                    <!-- last name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Last Name *</label>
+                        <input type="text" name="LastName" value="@ViewBag.lname" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Last Name">
+                        <p class="text-danger">@Html.ValidationMessage("LastName")</p>
+                    </div>
+
+                    <!-- email-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Email *</label>
+                        <input type="email" name="EmailID" value="@ViewBag.email" class="form-control" id="exampleFormControlInput1" placeholder="Enter your email address">
+                        <p class="text-danger">@Html.ValidationMessage("EmailID")</p>
+                    </div>
+
+                    <!-- Secondary email-->
+                    <!-- phone name-->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="my_lable">Phone Number</label>
+                        <div id="phone_profile_aglin">
+
+
+                            @Html.DropDownList("PhonenumberCountryCode", new SelectList(ViewBag.Codelist, "Code1", "Code1"), new { @class = "form-control" })
+                            <p class="text-danger">@Html.ValidationMessage("PhonenumberCountryCode")</p>
+
+                            <div>
+                                <input type="text" name="Phonenumber" value="@ViewBag.phone" class="form-control" id="exampleFormControlInput1_phone" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        <br>
+                        <p style="color:green; margin-left:15px;">@ViewBag.code</p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!--========= right side ===========-->
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <button class="my_button_submit">SUBMIT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end of address detail section -->
+}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
